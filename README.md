@@ -42,4 +42,4 @@ http://hedonometer.org/index.html
 https://github.com/amueller/word_cloud
 https://www.nytimes.com/2017/09/21/opinion/sunday/-truvada-gay-hiv-aids.html?_r=0
 
-
+![Screen Shot](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Image%20uploaded%20from%20iOS.jpg)
