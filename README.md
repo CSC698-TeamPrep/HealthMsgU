@@ -1,7 +1,9 @@
 # HealthMsgU
 https://csc698-teamprep.github.io/HealthMsgU/
 
-### HealthMsgU is a web platform that enables researchers to gauge public perception and find trends regarding health topics. The web platform gathers posts using the Twitter API and analyzes them to generate visualized statistical data.
+## HealthMsgU is a web platform that enables researchers to gauge public perception and find trends regarding health topics. The web platform gathers posts using the Twitter API and analyzes them to generate visualized statistical data.
+
+###User Stories:
 
 #### The following required functionality needs to completed for the MVP:
 
@@ -34,7 +36,7 @@ https://csc698-teamprep.github.io/HealthMsgU/
 * Word Cloud generator: it generates a word cloud depicting the most common words associated with HIV on Twitter (Positive or Negative)
 * Map of Tweet locations
 
-#### Architecture:
+### Architecture:
 
 **Web host:** GitHub pages
 
@@ -47,18 +49,37 @@ http://hedonometer.org/index.html
 https://github.com/amueller/word_cloud
 https://www.nytimes.com/2017/09/21/opinion/sunday/-truvada-gay-hiv-aids.html?_r=0
 
+
+### Storyboard:
+
+**Home Page**
+
 ![Home Page](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Homepage.PNG)
+
+**Navigation Tabs**
 
 ![Tabs](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Tabs.PNG)
 
+**Word Cloud**
+
 ![Word Cloud](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Wordcloud.PNG)
+
+**Word Association**
 
 ![Word Association](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/wordassociation.PNG)
 
+**Message Map**
+
 ![Map](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Map.PNG)
 
-![Timeline}(https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Timeline.PNG)
+**Message Timeline**
+
+![Timeline](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Timeline.PNG)
+
+**About Us**
 
 ![About Project](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/AboutProject.PNG)
+
+**Contact Us**
 
 ![Contact Us](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Contact_us.PNG)
