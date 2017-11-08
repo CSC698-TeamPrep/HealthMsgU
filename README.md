@@ -47,4 +47,18 @@ http://hedonometer.org/index.html
 https://github.com/amueller/word_cloud
 https://www.nytimes.com/2017/09/21/opinion/sunday/-truvada-gay-hiv-aids.html?_r=0
 
-![Screen Shot](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Image%20uploaded%20from%20iOS.jpg)
+![Home Page](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Homepage.PNG)
+
+![Tabs](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Tabs.PNG)
+
+![Word Cloud](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Wordcloud.PNG)
+
+![Word Association](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/wordassociation.PNG)
+
+![Map](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Map.PNG)
+
+![Timeline}(https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Timeline.PNG)
+
+![About Project](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/AboutProject.PNG)
+
+![Contact Us](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Contact_us.PNG)
