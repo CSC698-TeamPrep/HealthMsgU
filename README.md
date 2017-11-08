@@ -1,8 +1,5 @@
-HealthMsgU
-
-https://csc698-teamprep.github.io/HealthMsgU/
-
 # HealthMsgU
+https://csc698-teamprep.github.io/HealthMsgU/
 
 ### HealthMsgU is a web platform that enables researchers to gauge public perception and find trends regarding health topics. The web platform gathers posts using the Twitter API and analyzes them to generate visualized statistical data.
 
@@ -39,13 +36,13 @@ https://csc698-teamprep.github.io/HealthMsgU/
 
 #### Architecture:
 
-Hosting on GitHub pages
+**Web host:** GitHub pages
 
-Languages used: HTML, CSS, JS
+**Languages used:** HTML, CSS, JS
 
-API used: Twitter, Google Maps, Word cloud(?)
+**API used:** Twitter, Google Maps, Word cloud(?)
 
-Resources: 
+**Resources:** 
 http://hedonometer.org/index.html
 https://github.com/amueller/word_cloud
 https://www.nytimes.com/2017/09/21/opinion/sunday/-truvada-gay-hiv-aids.html?_r=0
