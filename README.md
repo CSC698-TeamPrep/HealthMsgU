@@ -5,7 +5,7 @@ https://csc698-teamprep.github.io/HealthMsgU/
 
 ### User Stories:
 
-#### The following required functionality needs to completed for the MVP:
+#### The following required functionality needs to be completed for the MVP:
 
 * User can enter search terms in a search field
 * Tweets are pulled using Twitter’s API 
