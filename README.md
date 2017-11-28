@@ -45,9 +45,9 @@ https://csc698-teamprep.github.io/HealthMsgU/
 **API used:** Twitter, Google Maps, Word cloud(?)
 
 **Resources:**
-http://hedonometer.org/index.html
-https://github.com/amueller/word_cloud
-https://www.nytimes.com/2017/09/21/opinion/sunday/-truvada-gay-hiv-aids.html?_r=0
+[Hedonometer](http://hedonometer.org/index.html)
+[Word Cloud Code](https://github.com/amueller/word_cloud)
+[Why our project is relavent](https://www.nytimes.com/2017/09/21/opinion/sunday/-truvada-gay-hiv-aids.html?_r=0)
 
 
 ### Storyboard:
