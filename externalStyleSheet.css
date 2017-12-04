@@ -1,0 +1,13 @@
+body {
+    background-color: lightblue;
+}
+
+h1 {
+    color: navy;
+    margin-left: 20px;
+}
+
+.footer {
+    background-color: #f1f1f1;
+    padding: 10px;
+}
