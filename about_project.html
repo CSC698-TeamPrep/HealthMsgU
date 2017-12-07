@@ -23,17 +23,32 @@
 
 <!--how to do navigation bar-->
 <nav class="navbar navbar-inverse" >
-    <div class="container container-fluid">
-        <div class="navbar-header">
-            <a href="#" class="navbar-brand">HealthMsgU</a>
-            <ul class="navbar-right nav navbar-nav ">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
-            </a>
-        </div>
+  <div class="container container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">
+        <img class="img-responsive" style="margin-top: -10px; height: auto; width: auto; max-height: 40px; max-width: 250px; " alt = "Brand" src="hmu2.png">
+      </a>
     </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="navbar-right nav navbar-nav ">
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Results<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="maps.html">Maps</a></li>
+              <li><a href="word_cloud.html">Word Cloud</a></li>
+              <li><a href="frequency.html">Frequency Table</a></li>
+            </ul>
+          </li>
+          <li><a href="about_project.html">About</a></li>
+          <li><a href="ContactUs.html">Contact Us</a></li>
+        </ul>
+    </div>
+  </div>
 </nav>
 
 <!--how to add different classes            class="container bg-info"-->

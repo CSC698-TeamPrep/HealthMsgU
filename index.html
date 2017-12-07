@@ -12,21 +12,38 @@
 </head>
 
 <body>
+
+
 <nav class="navbar navbar-inverse" >
   <div class="container container-fluid">
     <div class="navbar-header">
-      <a href="#" class="navbar-brand">HealthMsgU</a>
-        <ul class="navbar-right nav navbar-nav ">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact Us</a></li>
-        </ul>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">
+        <img class="img-responsive" style="margin-top: -10px; height: auto; width: auto; max-height: 40px; max-width: 250px; " alt = "Brand" src="hmu2.png">
       </a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="navbar-right nav navbar-nav ">
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Results<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="maps.html">Maps</a></li>
+              <li><a href="word_cloud.html">Word Cloud</a></li>
+              <li><a href="frequency.html">Frequency Table</a></li>
+            </ul>
+          </li>
+          <li><a href="about_project.html">About</a></li>
+          <li><a href="ContactUs.html">Contact Us</a></li>
+        </ul>
+    </div>
   </div>
-</div>
 </nav>
 
-<div class="container bg-info w3-round-large">
+<div class="container w3-round-large">
   <h2 style = "text-align:center;">Welcome to HealthMsgU!</h2>
   <p style = "text-align:center;"><strong>HealthMsgU is a web platform that
     enables researchers to gauge public perception and find trends regarding health topics.</strong></p>
@@ -41,15 +58,21 @@
       <form>
         <p style = "text-align:center;"> Enter a health related search term below:<p>
         <div class="input-group">
-          <input type="query" class = "form-control" placeholder="Search">
+          <input id = "search_input" type="query" class = "form-control" placeholder="Search">
           <div class="input-group-btn">
-            <button class="btn btn-default" type="submit">
+            <button onclick= "search_term()" class="btn btn-default" type="submit">
               <i class="glyphicon glyphicon-search"></i>
             </button>
         </div>
       </form>
     </div>
+    <div style="margin:auto; padding:40px;" >
+      <a class="twitter-timeline"  href="search_link" data-widget-id="936370028651229185">Tweets</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+    <div>
     <div class = "col-md-2"></div>
   </div>
 </div>
 </div>
+</body>

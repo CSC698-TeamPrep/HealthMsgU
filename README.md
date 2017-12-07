@@ -8,13 +8,13 @@ https://csc698-teamprep.github.io/HealthMsgU/
 #### The following required functionality needs to be completed for the MVP:
 
 * User can enter search terms in a search field
-* Tweets are pulled using Twitter’s API 
+* Tweets are pulled using Twitterï¿½s API
 * An error message is displayed if no pertinent messages are found
 * A loading screen is displayed as the web platform searches and analyzes data
 * Frequency of words associated with search terms can be viewed (as table?)
-* A map will display the location of where the Tweets are being generated 
+* A map will display the location of where the Tweets are being generated
 * User can view data as a word cloud based on frequency
-* User can learn more about the project by clicking “About Us” from the navigation bar
+* User can learn more about the project by clicking ï¿½About Usï¿½ from the navigation bar
 * User can download the data for their personal use (File type?)
 * User can share the word plot via email or social media
 
@@ -31,7 +31,7 @@ https://csc698-teamprep.github.io/HealthMsgU/
 #### Tasks our group needs to do to create the MVP:
 
 * Host website
-* Have a blurb about what HealthMsgU is 
+* Have a blurb about what HealthMsgU is
 * Have a user interface to allow the user to have search input
 * Word Cloud generator: it generates a word cloud depicting the most common words associated with HIV on Twitter (Positive or Negative)
 * Map of Tweet locations
@@ -44,42 +44,42 @@ https://csc698-teamprep.github.io/HealthMsgU/
 
 **API used:** Twitter, Google Maps, Word cloud(?)
 
-**Resources:** 
-http://hedonometer.org/index.html
-https://github.com/amueller/word_cloud
-https://www.nytimes.com/2017/09/21/opinion/sunday/-truvada-gay-hiv-aids.html?_r=0
+**Resources:**  
+[Hedonometer](http://hedonometer.org/index.html)  
+[Word cloud resource](https://github.com/amueller/word_cloud)  
+[A great article illustrating why our project is relevant](https://www.nytimes.com/2017/09/21/opinion/sunday/-truvada-gay-hiv-aids.html?_r=0)  
 
 
 ### Storyboard:
 
 **Home Page**
 
-![Home Page](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Homepage.PNG)
+![Home Page](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/Photos/Homepage.PNG)
 
 **Navigation Tabs**
 
-![Tabs](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Tabs.PNG)
+![Tabs](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/Photos/Tabs.PNG)
 
 **Word Cloud**
 
-![Word Cloud](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Wordcloud.PNG)
+![Word Cloud](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/Photos/Wordcloud.PNG)
 
 **Word Association**
 
-![Word Association](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/wordassociation.PNG)
+![Word Association](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/Photos/wordassociation.PNG)
 
 **Message Map**
 
-![Map](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Map.PNG)
+![Map](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/Photos/Map.PNG)
 
 **Message Timeline**
 
-![Timeline](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Timeline.PNG)
+![Timeline](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/Photos/Timeline.PNG)
 
 **About Us**
 
-![About Project](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/AboutProject.PNG)
+![About Project](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/Photos/AboutProject.PNG)
 
 **Contact Us**
 
-![Contact Us](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/gt_ReadME/Photos/Contact_us.PNG)
+![Contact Us](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/Photos/Contact_us.PNG)
