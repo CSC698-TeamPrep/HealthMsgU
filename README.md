@@ -8,19 +8,19 @@ https://csc698-teamprep.github.io/HealthMsgU/
 #### The following required functionality needs to be completed for the MVP:
 
 * User can enter search terms in a search field
-* Tweets are pulled using Twitter�s API
+* Tweets are pulled using Twitter%'%s API
 * An error message is displayed if no pertinent messages are found
 * A loading screen is displayed as the web platform searches and analyzes data
+* User can move seamlessly between visualizations using tabs
 * Frequency of words associated with search terms can be viewed (as table?)
 * A map will display the location of where the Tweets are being generated
 * User can view data as a word cloud based on frequency
-* User can learn more about the project by clicking �About Us� from the navigation bar
+* User can learn more about the project by clicking %"%About Us%"% from the navigation bar
 * User can download the data for their personal use (File type?)
 * User can share the word plot via email or social media
 
 #### The following optional features might be implemented:
 
-* User can move seamlessly between visualizations using tabs
 * User can gather data from other social media outlets such as Facebook and reddit (web-scraping)
 * User can customize generated word cloud, eg: change fonts, colors, isolate certain words
 * There can be a history of previous word clouds plotted with dates (e.g the most recent cloud or the most frequently plotted word association) (Database configuration)
