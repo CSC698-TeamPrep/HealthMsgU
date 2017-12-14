@@ -30,11 +30,11 @@ https://csc698-teamprep.github.io/HealthMsgU/
 
 #### Tasks our group needs to do to create the MVP:
 
-* Host website
-* Have a blurb about what HealthMsgU is
-* Have a user interface to allow the user to have search input
-* Word Cloud generator: it generates a word cloud depicting the most common words associated with HIV on Twitter (Positive or Negative)
-* Map of Tweet locations
+[X] Host website
+[X] Generate an informative blurb about HealthMsgU
+[X] Create a user interface to allow the user to have search input
+[X] Word Cloud generator: generates a word cloud depicting the most common words associated with HIV on Twitter
+[X] Implement Google Maps API to display Tweet locations
 
 ### Architecture:
 
