@@ -1,5 +1,5 @@
 # HealthMsgU
-https://csc698-teamprep.github.io/HealthMsgU/
+http://healthmsgu.me/
 
 ## HealthMsgU is a web platform that enables researchers to gauge public perception and find trends regarding health topics. The web platform gathers posts using the Twitter API and analyzes them to generate visualized statistical data.
 
