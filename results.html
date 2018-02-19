@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Maps</title>
+    <title>Results</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -37,7 +37,38 @@
             margin: 0;
             padding: 0;
           }
-          
+ .footer{
+            background-color: lightgrey;
+            padding: 5px;
+
+        }
+
+         #words {
+             font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+             font-size: large;
+             border-collapse: collapse;
+             width: 50%;
+
+
+                  }
+
+        #words td, #words th {
+            border: 3px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        #words tr:nth-child(even){background-color: #f2f2f2;}
+
+        #words tr:hover {background-color: #ddd;}
+
+        #words th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+            background-color: black;
+            color: white;
+        }         
   </style>
   </head>
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
@@ -58,13 +89,6 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="navbar-right nav navbar-nav ">
-              <li class="dropdown">
-                <ul class="dropdown-menu">
-                  <li><a href="maps.html">Maps</a></li>
-                  <li><a href="word_cloud.html">Word Cloud</a></li>
-                  <li><a href="words.html">Frequency Table</a></li>
-                </ul>
-              </li>
               <li><a href="about_project.html">About</a></li>
               <li><a href="ContactUsNew.html">Contact Us</a></li>
             </ul>
@@ -100,6 +124,59 @@
         <img src="Photos/Photo_WordCloud/wordaidsday1.png" class="img-responsive center-block">
         <img src="Photos/Photo_WordCloud/DNA_cloud2.PNG" class="img-responsive center-block">
 </div>
+<br><b><h1 style="text-align:center;" >Word Frequency Table </h1> </b>
+<br>
+
+    <h2><p style="text-align: center">Word(s): HIV, PrEP</p></h2>
+    <br>
+
+
+
+
+
+       <table id="words" align="center">
+        <tr >
+             <th>#</th>
+                <th>Word</th>
+                <th>Frequency</th>
+        </tr>
+
+           <tr >
+               <td>1</td>
+               <td>Drug</td>
+               <td>5000</td>
+           </tr>
+           <tr>
+               <td>2</td>
+               <td>Everyday</td>
+               <td>4816</td>
+           </tr>
+           <tr >
+               <td>3</td>
+               <td>Pill</td>
+               <td>3670</td>
+           </tr>
+           <tr>
+               <td>4</td>
+               <td>STD</td>
+               <td>2811</td>
+           </tr>
+           <tr>
+               <td>5</td>
+               <td>Protection</td>
+               <td>1962</td>
+           </tr>
+
+
+
+    </table>
+
+
+    <br>
+    <br>
+
+
+        </div>
 <script>
 // When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
