@@ -22,15 +22,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">
-        <img class="img-responsive" style="margin-top: -10px; height: auto; width: auto; max-height: 40px; max-width: 250px; " alt = "Brand" src="Photos/Logos/hmu2.png">
+      <a class="navbar-brand" href="{{ url_for('index') }}">
+        <img class="img-responsive" style="margin-top: -10px; height: auto; width: auto; max-height: 40px; max-width: 250px; " alt = "Brand" src={{url_for('static', filename = 'Logos/hmu2.png') }}>
       </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="navbar-right nav navbar-nav ">
-          <li><a href="results.html">Results</a></li>  
-          <li><a href="about_project.html">About</a></li>
-          <li><a href="ContactUsNew.html">Contact Us</a></li>
+          <li><a href="{{ url_for('Results') }}">Results</a></li>  
+          <li><a href="{{ url_for('AboutProject') }}">About</a></li>
+          <li><a href="{{ url_for('ContactUs') }}">Contact Us</a></li>
         </ul>
     </div>
   </div>
@@ -53,7 +53,7 @@
         <div class="input-group">
           <input id = "search_input" type="query" class = "form-control" placeholder="Search">
           <div class="input-group-btn">
-            <a href="results.html"><button onclick= "search_term()" class="btn btn-default"></a>
+            <a href="{{ url_for('Results') }}"><button onclick= "search_term()" class="btn btn-default"></a>
               <i class="glyphicon glyphicon-search"></i>
             </button>
         </div>
