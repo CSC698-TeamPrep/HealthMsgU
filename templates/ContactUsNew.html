@@ -102,7 +102,7 @@ div.bigdiv{
     </div>
 
     <div class="col-sm-4">
-        <img id="Gabriella" src="Photos/Photo_ContactUs/Gabriella.jpg" width="200px" height="200px" alt="Photo of Gabriella">
+        <img id="Gabriella" src="{{url_for('static', filename = 'Photo_ContactUs/Gabriella.jpg') }}width="200px" height="200px" alt="Photo of Gabriella">
         <div class="info">
             <h4><b>Gabriella Tenorio<b></h4>
             <p> Major: Microbiology<br>
@@ -110,9 +110,9 @@ div.bigdiv{
             Creator of Contact Us Page <br>
             Word Cloud Mockup<br>
             <a href="https://github.com/gtenorio10">
-            <img src="Photos/Photo_ContactUs/Githublogo.png"></a>
+            <img src= "{{url_for('static', filename = 'Photo_ContactUs/Githublogo.png') }}</a>
             <a href="https://www.linkedin.com/in/gabriella-tenorio-2a159a152">
-            <img src="Photos/Photo_ContactUs/Inlogo.png"></a></p>
+            <img src="{{url_for('static', filename = 'Photo_ContactUs/Inlogo.png') }}</a></p>
         </div>
     </div>
 
