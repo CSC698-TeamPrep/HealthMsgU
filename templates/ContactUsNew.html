@@ -119,15 +119,15 @@ div.bigdiv{
 
     <div class="col-sm-4">
         <h3><b>Computer Science Mentor<b></h3>
-        <img id="Poojan" src="Photos/Photo_ContactUs/Poojan.jpg" width="200px" height="200px" alt="Photo of Poojan">
+        <img id="Poojan" src="{{url_for('static', filename = 'Photo_ContactUs/Poojan.jpg') }}width="200px" height="200px" alt="Photo of Poojan">
         <div class="infopd">
             <h4><b>Poojan Dave<b></h4>
             <p>Major: Computer Science<br>
             dave.sfsu@gmail.com <br>
             <a href="https://github.com/pdave-sfsu">
-            <img src="Photos/Photo_ContactUs/Githublogo.png"></a>
+            <img src="{{url_for('static', filename = 'Photo_ContactUs/Githublogo.png') }}</a>
             <a href="https://www.linkedin.com/in/poojan-dave/">
-            <img src="Photos/Photo_ContactUs/Inlogo.png"></a></p>
+            <img src="{{url_for('static', filename = 'Photo_ContactUs/Inlogo.png') }}</a></p>
         </div>
     </div>
 
