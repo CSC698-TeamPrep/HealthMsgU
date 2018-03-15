@@ -55,7 +55,7 @@ div.bigdiv{
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="{{ url_for('index') }}">
-            <img class="img-responsive" style="margin-top: -10px; height: auto; width: auto; max-height: 40px; max-width: 250px; " alt = "Brand" src="Photos/Logos/hmu2.png">
+            <img class="img-responsive" style="margin-top: -10px; height: auto; width: auto; max-height: 40px; max-width: 250px; " alt = "Brand" src="{{url_for('static', filename = 'Logos/hmu2.png') }}">
           </a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -73,7 +73,7 @@ div.bigdiv{
 <div class="page-header"><h1><b>Contact Us</h1><b></div>
 
     <div class="col-sm-4">
-        <img id="Emily" src="Photos/Photo_ContactUs/Emily.png" width="200px" height="200px" alt="Photo of Emily">
+        <img id="Emily" src="{{url_for('static', filename = 'Photo_ContactUs/Emily.png') }}" width="200px" height="200px" alt="Photo of Emily">
         <div class="info">
             <h4><b>Emily Fryer<b></h4>
             <p> Major: Ecology<br>
@@ -81,12 +81,12 @@ div.bigdiv{
             Creator of Index Page <br>
             Goggle Map API<br>
             <a href="https://github.com/efryer333">
-            <img src="Photos/Photo_ContactUs/Githublogo.png"></a></p>
+            <img src="{{url_for('static', filename = 'Photo_ContactUs/Githublogo.png') }}></a></p>
         </div>
     </div>
 
     <div class="col-sm-4">
-        <img id="" src="Photos/Photo_ContactUs/Nicole.jpg" width="200px" height="200px" alt="Photo of Nicole">
+        <img id="" src="{{url_for('static', filename = 'Photo_ContactUs/Nicole.jpg') }} width="200px" height="200px" alt="Photo of Nicole">
         <div class="info">
             <h4><b>Nicole Rodrigues<b></h4>
             <p> Major: Cell & Molecular<br>
@@ -94,9 +94,10 @@ div.bigdiv{
             Creator of About Us Page <br>
             Word Frequency Mockup<br>
             <a href="https://github.com/N-Rodrigues">
-            <img src="Photos/Photo_ContactUs/Githublogo.png"></a>
+            <img src="{{url_for('static', filename = 'Photo_ContactUs/Githublogo.png') }}</a>
             <a href= "https://www.linkedin.com/in/nicole-rodrigues-6b35a0152/">
-            <img src="Photos/Photo_ContactUs/Inlogo.png"></a></p>
+            <img src="{{url_for('static', filename = 'Photo_ContactUs/Inlogo.png') }}</a></p>
+            
         </div>
     </div>
 
