@@ -44,7 +44,7 @@
       <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="navbar-right nav navbar-nav ">
             <li><a href="{{ url_for('Results') }}">Results</a></li>  
-            <li><a href="ContactUsNew.html">Contact Us</a></li>
+            <li><a href="{{ url_for('ContactUs') }}">Contact Us</a></li>
           </ul>
       </div>
     </div>
@@ -78,7 +78,7 @@
 <div class="container bg-info"   ><h3 style="color: black">
     <b>Q. </b>How to contact the creators?
     <br>
-    <b>A. </b>To contact the creators click on <a href="ContactUsNew.html">contact us </a> for more information.
+    <b>A. </b>To contact the creators click on <a href="{{ url_for('ContactUs') }}">contact us </a> for more information.
     <br>
 
     <p></p>
@@ -102,7 +102,7 @@
 <br>
 <div class="footer" color="blue"><h3 style="color: black">
 
-    <p style="text-align:center;"> <a href="index.html">Health Msg U</a></p>
+    <p style="text-align:center;"> <a href="{{ url_for('index') }}">Health Msg U</a></p>
 
 </h3></div>-->
 
