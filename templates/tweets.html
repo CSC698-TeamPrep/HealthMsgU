@@ -1,0 +1,33 @@
+<!-- templates/tweets.html -->  
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Tweet Harvester</title>
+
+    <!-- Bootstrap 4 Stuff https://v4-alpha.getbootstrap.com/  --> 
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+          crossorigin="anonymous">
+    <!-- End Bootstrap 4 stuff -->
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="p-3">Tweet Harvester</h1>
+      {% for tweet in tweets %}
+      <div class="list-group">
+         <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+           <div class="d-flex w-100 justify-content-between">
+             <img src="{{tweet.headshot_url}}" class="w-12 p-1 float-left image-thumbnail">  
+             <h5 class="ml-10 w-75 mb-1">{{ tweet.tweet }}</h5>
+             <small>{{ tweet.created_at }}</small>
+           </div>
+         </a>
+      </div>
+      {% endfor %}
+      
+    </div>
+  </body>
+</html>
