@@ -48,7 +48,29 @@
   <div class = "row" style = "padding:40px 15px;">
     <div class = "col-md-2"></div>
     <div class = "col-md-8">
-      <form>
+       
+      {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message[1] }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+       <form action="" method="post">
+            {{ form.csrf }}
+ 
+            <div class="input text">
+                {{ form.tweets.label }} {{ form.tweets }}
+            </div>
+ 
+            <div class="input submit">
+                <input type="submit" value="Submit" />
+            </div>
+        </form>
+
+      <!--<form>
         <p style = "text-align:center;"> Enter a health related search term below:<p>
         <div class="input-group">
           <input id = "search_input" type="query" class = "form-control" placeholder="Search">
@@ -57,7 +79,7 @@
               <i class="glyphicon glyphicon-search"></i>
             </button>
         </div>
-      </form>
+      </form>-->
     </div>
     <div align = "center" style="margin:auto; padding:40px;" >
       <a class="twitter-timeline"  href="search_link" data-widget-id="936370028651229185">Tweets</a>
