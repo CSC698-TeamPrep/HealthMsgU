@@ -11,11 +11,12 @@ class TwitterClient(object):
     Generic Twitter Class for sentiment analysis.
     '''
 
-    def __init__(self):
+    def __init__(self, userinput):
         '''
         Class constructor or initialization method.
         '''
         # keys and tokens from the Twitter Dev Console
+        self.searchterm = userinput
         consumer_key = 'iHTvDAptJAx3PwfYfw00Qa6sX'
         consumer_secret = '6Gp8kYPR3kULcPPdW3k1gYopQEi4NBdSfFPP8ifHCE0gwkQWCX'
         access_token = '938932912870658048-ICcR2mOBhIvNtIQmMSVdtuQbUsCxIXL'
@@ -95,8 +96,8 @@ def main():
     # creating object of TwitterClient Class
     api = TwitterClient()
     # calling function to get tweets
-    searchterm = input("Enter query: ")
-    tweets = api.get_tweets(query=searchterm, count=100)
+    #searchterm = input("Enter query: ")
+    tweets = api.get_tweets(query=searchterm, count=10)
 
     # picking positive tweets from tweets
     ptweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']
