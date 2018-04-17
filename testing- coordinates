@@ -1,0 +1,40 @@
+#Info about coordinates and places
+
+#asking what the user wants to search for
+wordSearch = input("What's input do you want to search for? ")
+print("This is your input: " + wordSearch )
+
+
+import tweepy
+
+auth = tweepy.OAuthHandler("iHTvDAptJAx3PwfYfw00Qa6sX", "6Gp8kYPR3kULcPPdW3k1gYopQEi4NBdSfFPP8ifHCE0gwkQWCX")
+auth.set_access_token("938932912870658048-ICcR2mOBhIvNtIQmMSVdtuQbUsCxIXL", "QU7ArtcKW1aEQYcf0HlMUpS7m07UtQmUNl42OvAJyZ5SH")
+
+api = tweepy.API(auth)
+
+
+#items say number of tweets looked at
+for tweet in tweepy.Cursor(api.search,q=wordSearch).items(20):
+    # just print(tweet.text) for the results (tweet.author or date)
+    # just print(tweet) for all the results
+
+    c=tweet.coordinates
+    # what gets printed out:
+    # {'type': 'Point', 'coordinates': [28.06045532, -26.21659308]}
+    #print(tweet.text)
+    # x.geo_enabled works
+
+    p=tweet.place
+    #what gets printed out:
+    # Place(name='Planned Parenthood of NYC - Diane L. Max Center', country_code='US', bounding_box=BoundingBox(coordinates=[[[-73.945966, 40.746645], [-73.945966, 40.746645], [-73.945966, 40.746645], [-73.945966, 40.746645]]], type='Polygon', _api=<tweepy.api.API object at 0x03832E90>), full_name='Planned Parenthood of NYC - Diane L. Max Center', place_type='poi', country='United States', id='0863561f95d42000', _api=<tweepy.api.API object at 0x03832E90>, contained_within=[], url='https://api.twitter.com/1.1/geo/id/0863561f95d42000.json', attributes={})
+    # Place(name='Taylor', country_code='US', bounding_box=BoundingBox(coordinates=[[[-83.308978, 42.181294], [-83.228111, 42.181294], [-83.228111, 42.269861], [-83.308978, 42.269861]]], type='Polygon', _api=<tweepy.api.API object at 0x03832E90>), full_name='Taylor, MI', place_type='city', country='United States', id='a9eb1b07c3864593', _api=<tweepy.api.API object at 0x03832E90>, contained_within=[], url='https://api.twitter.com/1.1/geo/id/a9eb1b07c3864593.json', attributes={})
+
+    print(c)
+    print(p)
+
+    # places = api.geo_search(query="United States", granularity="country")
+    # place_id = places[0].id
+    # public_tweets = api.search(q="place:%s" % place_id)
+    # for one in public_tweets:
+    #    print(one.place)
+    #    print(tweet.text)
