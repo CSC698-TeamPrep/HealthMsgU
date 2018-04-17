@@ -9,12 +9,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="healthmsgu.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  
+  
 </head>
-
-<body>
-
-
-<nav class="navbar navbar-inverse" >
+<nav class="navbar navbar-inverse navbar-fixed-top" >
   <div class="container container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -23,12 +21,21 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="{{ url_for('index') }}">
-        <img class="img-responsive" style="margin-top: -10px; height: auto; width: auto; max-height: 40px; max-width: 250px; " alt = "Brand" src="{{url_for('static', filename = 'Logos/hmu2.png') }}">
+        <img class="img-responsive" style="margin-top: -10px; height: auto; width: auto; max-height: 40px; max-width: 250px; " alt = "Brand" src="{{url_for('static', filename = 'Logos/hmulogo.png') }}">
       </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="navbar-right nav navbar-nav ">
-          <li><a href="{{ url_for('Results') }}">Results</a></li>  
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Results
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li class="disabled"><a href="#Results">Top 5 Tweets</a></li>
+          <li class="disabled"><a href="#wordcloud">Word Cloud</a></li>
+          <li class="disabled"><a href="#wordfreq">Word Frequency Table</a></li>
+          <li class="disabled"><a href="#Map">Map</a></li>
+        </ul>
+      </li>
           <li><a href="{{ url_for('AboutProject') }}">About</a></li>
           <li><a href="{{ url_for('ContactUs') }}">Contact Us</a></li>
         </ul>
@@ -36,12 +43,11 @@
   </div>
 </nav>
 
-<div class="container w3-round-large">
-  <h2 style = "text-align:center;">Welcome to HealthMsgU!</h2>
+<div class="container w3-round-large" style= "display: block;" id= "HMUText">
+  <h2 style = "text-align:center;margin-top:70px">Welcome to HealthMsgU!</h2>
   <p style = "text-align:center;"><strong>HealthMsgU is a web platform that
     enables researchers to gauge public perception and find trends regarding health topics.</strong></p>
   <p style = "text-align:center;"><strong>The web platform gathers posts using the Twitter API and analyzes them to generate visualized statistical data.</strong></p>
-
 </div>
 
 <div class = "container">
@@ -49,10 +55,11 @@
     <div class = "col-md-2"></div>
     <div class = "col-md-8">
        
-     {% with messages = get_flashed_messages(with_categories=true) %}
+      {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 <ul>
-                    {% for message in messages %}
+                    <!--<b><li>Top 5 Tweets</li></b>-->
+                        {% for message in messages %}
                         <li>{{ message[1] }}</li>
                     {% endfor %}
                 </ul>
@@ -69,26 +76,148 @@
                 <input type="submit" value="Submit" />
             </div>
         </form>
+    </div>   
+</div>
 
-      <!--<form>
-        <p style = "text-align:center;"> Enter a health related search term below:<p>
-        <div class="input-group">
-          <input id = "search_input" type="query" class = "form-control" placeholder="Search">
-          <div class="input-group-btn">
-            <a href="{{ url_for('Results') }}"><button onclick= "search_term()" class="btn btn-default"></a>
-              <i class="glyphicon glyphicon-search"></i>
-            </button>
-        </div>
-      </form>-->
-    </div>
-    <div align = "center" style="margin:auto; padding:40px;" >
-      <a class="twitter-timeline"  href="search_link" data-widget-id="936370028651229185">Tweets</a>
-      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-      </script>
+<!-- This is the div for the Word Cloud //style= "display: none;"-->
 
-    <div>
-    <div class = "col-md-2"></div>
+<div class="container" id= "WordCloudC" style= "display: none;">
+    <div class="page-header"><h1 id= "wordcloud"><b>Word Cloud</h1><b></div>
+    <h2><p style="text-align: center">Word(s): HIV, World's Aid Day</p></h2>
+
+<div class="col-md-12 school-options-dropdown text-center">
+    <div class="dropdown btn-group">
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Type
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href="#">Positive</a></li>
+      <li><a href="#">Negative</a></li>
+      <li><a href="#">Neutral</a></li>
+    </ul>
   </div>
 </div>
 </div>
+
+<div>
+        <img src="{{url_for('static', filename = 'Photo_WordCloud/wordaidsday1.png') }}"class="img-responsive center-block">
+        <img src="{{url_for('static', filename = 'Photo_WordCloud/DNA_cloud2.PNG') }}"class="img-responsive center-block">
+</div>
+</div>
+
+<!-- This a div for the Word freq table -->
+<div class="container" id= "WordFreqC" style= "display: none;">
+<br><h1 class="page-header"id= "wordfreq" class="tab-pane fade"><b>Word Frequency Table </h1> </b>
+<br>
+    <h2><p style="text-align: center">HIV, World's Aid Day</p></h2>
+    <br>
+       <table id="words" align="center">
+        <tr >
+             <th>#</th>
+                <th>Word</th>
+                <th>Frequency</th>
+        </tr>
+           <tr >
+               <td>1</td>
+               <td>Drug</td>
+               <td>5000</td>
+           </tr>
+           <tr>
+               <td>2</td>
+               <td>Everyday</td>
+               <td>4816</td>
+           </tr>
+           <tr >
+               <td>3</td>
+               <td>Pill</td>
+               <td>3670</td>
+           </tr>
+           <tr>
+               <td>4</td>
+               <td>STD</td>
+               <td>2811</td>
+           </tr>
+           <tr>
+               <td>5</td>
+               <td>Protection</td>
+               <td>1962</td>
+           </tr>
+    </table>
+    <br>
+    <br>
+</div>    
+</div>
+
+<!-- This is the div for the map -->
+<div class="container"id= "MapC" style= "display: none;">
+<div class="page-header"><h1 id= "Map"><b>Map</h1><b></div>
+<div id="map">
+</div>
+</div>
+
+<script>
+//This code for the map
+var map;
+       function initMap() {
+         map = new google.maps.Map(document.getElementById('map'), {
+           zoom: 2,
+           center: {lat: 37.721325, lng: -122.477858},
+           mapTypeId: 'terrain'
+         });
+
+         // Create a <script> tag and set the USGS URL as the source.
+         var script = document.createElement('script');
+
+         // This example uses a local copy of the GeoJSON stored at
+         // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+         script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+         document.getElementsByTagName('head')[0].appendChild(script);
+
+         map.data.setStyle(function(feature) {
+           var magnitude = feature.getProperty('mag');
+           return {
+             icon: getCircle(magnitude)
+           };
+         });
+       }
+
+       function getCircle(magnitude) {
+         return {
+           path: google.maps.SymbolPath.CIRCLE,
+           fillColor: 'red',
+           fillOpacity: .2,
+           scale: Math.pow(2, magnitude) / 2,
+           strokeColor: 'white',
+           strokeWeight: .5
+         };
+       }
+
+       function eqfeed_callback(results) {
+         map.data.addGeoJson(results);
+       }
+ //This is code to make the results appear
+$(document).ready(function(){
+ $(":submit").click(function() {
+    $("#WordCloudC").show();
+    $("#WordFreqC").show();
+    $("#MapC").show();
+    });
+});
+ 
+ 
+ 
+<!--document.getElementById("infoForm").onclick = function() {myFunction()};-->
+
+//function myFunction() {
+ //   document.getElementById('WordCloudC').style.display = 'block';
+ //   document.getElementById('WordFreqC').style.display = 'block';
+ //   document.getElementById('MapC').style.display = 'block';
+ //   document.getElementById('HMUText').style.display = 'none';    
+//}
+ 
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxIiQNl0Ziaj9_xFEYbzzJ3_c9q2_IOns&callback=initMap">
+</script>
+
 </body>
