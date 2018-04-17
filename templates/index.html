@@ -9,12 +9,12 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="healthmsgu.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  
+  
 </head>
 
 <body>
-
-
-<nav class="navbar navbar-inverse" >
+<nav class="navbar navbar-inverse navbar-fixed-top" >
   <div class="container container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -23,18 +23,30 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="{{ url_for('index') }}">
-        <img class="img-responsive" style="margin-top: -10px; height: auto; width: auto; max-height: 40px; max-width: 250px; " alt = "Brand" src="{{url_for('static', filename = 'Logos/hmu2.png') }}">
+        <img class="img-responsive" style="margin-top: -10px; height: auto; width: auto; max-height: 40px; max-width: 250px; " alt = "Brand" src="{{url_for('static', filename = 'Logos/hmulogo.png') }}">
       </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="navbar-right nav navbar-nav ">
-          <li><a href="{{ url_for('Results') }}">Results</a></li>  
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Results
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Top 5 Tweets</a></li>
+          <li><a href="#">Word Cloud</a></li>
+          <li><a href="#">Word Frequency Table</a></li>
+          <li><a href="#">Map</a></li>
+        </ul>
+      </li>
           <li><a href="{{ url_for('AboutProject') }}">About</a></li>
           <li><a href="{{ url_for('ContactUs') }}">Contact Us</a></li>
         </ul>
     </div>
   </div>
 </nav>
+
+
+
 
 <div class="container w3-round-large">
   <h2 style = "text-align:center;">Welcome to HealthMsgU!</h2>
