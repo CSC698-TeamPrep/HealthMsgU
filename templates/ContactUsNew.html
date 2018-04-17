@@ -24,12 +24,10 @@ div.info{
 }
 
 div.mentor{
-    margin: 0 auto;
-    width: 200px;
-	height:200px;
-	margin: 70px auto;
-}
-div.infopd{
+    text-align: left;
+    float:left
+} 
+div.infom{
     text-align: left;
 }
 
@@ -46,31 +44,41 @@ div.bigdiv{
 </style>
 </head>
 <body>
-<nav class="navbar navbar-inverse" >
-      <div class="container container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{{ url_for('index') }}">
-            <img class="img-responsive" style="margin-top: -10px; height: auto; width: auto; max-height: 40px; max-width: 250px; " alt = "Brand" src="{{url_for('static', filename = 'Logos/hmu2.png') }}">
-          </a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="navbar-right nav navbar-nav ">
-              <li><a href="{{ url_for('Results') }}">Results</a></li>    
-              <li><a href="{{ url_for('AboutProject') }}">About</a></li>
-            </ul>
-        </div>
-      </div>
-    </nav>
+<nav class="navbar navbar-inverse navbar-fixed-top" >
+  <div class="container container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ url_for('index') }}">
+        <img class="img-responsive" style="margin-top: -10px; height: auto; width: auto; max-height: 40px; max-width: 250px; " alt = "Brand" src="{{url_for('static', filename = 'Logos/hmu2.png') }}">
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="navbar-right nav navbar-nav ">
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Results
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Top 5 Tweets</a></li>
+          <li><a href="#">Word Cloud</a></li>
+          <li><a href="#">Word Frequency Table</a></li>
+          <li><a href="#">Map</a></li>
+        </ul>
+      </li>
+          <li><a href="{{ url_for('AboutProject') }}">About</a></li>
+          <li class="active"><a href="{{ url_for('ContactUs') }}">Contact Us</a></li>
+        </ul>
+    </div>
+  </div>
+</nav>
 
 
 
 <div class= "container">
-<div class="page-header"><h1><b>Contact Us</h1><b></div>
+<div class="page-header"style= "margin-top: 70px"><h1><b>Contact Us</h1><b></div>
 
     <div class="col-sm-4">
         <img id="Emily" src="{{url_for('static', filename = 'Photo_ContactUs/Emily.png') }}" width="200px" height="200px" alt="Photo of Emily">
@@ -78,25 +86,25 @@ div.bigdiv{
             <h4><b>Emily Fryer<b></h4>
             <p> Major: Ecology<br>
             efryer@mail.sfsu.edu <br>
-            Creator of Index Page <br>
-            Goggle Map API<br>
+            Front End: Index Page & <br>
+            Back End: Retrieving/Displaying Data<br>
             <a href="https://github.com/efryer333">
             <img src="{{url_for('static', filename = 'Photo_ContactUs/Githublogo.png') }}"></a></p>
         </div>
     </div>
 
     <div class="col-sm-4">
-        <img id="" src="{{url_for('static', filename = 'Photo_ContactUs/Nicole.jpg') }}" width="200px" height="200px" alt="Photo of Nicole">
+        <img id="Nicole" src="{{url_for('static', filename = 'Photo_ContactUs/Nicole.jpg') }}" width="200px" height="200px" alt="Photo of Nicole">
         <div class="info">
             <h4><b>Nicole Rodrigues<b></h4>
             <p> Major: Cell & Molecular<br>
             nic0le@mail.sfsu.edu<br>
-            Creator of About Us Page <br>
-            Word Frequency Mockup<br>
+            Front End: About Us Page & <br>
+            Back End: Retrieving Data<br>
             <a href="https://github.com/N-Rodrigues">
-            <img src="{{url_for('static', filename = 'Photo_ContactUs/Githublogo.png') }}"</a>
+            <img src="{{url_for('static', filename = 'Photo_ContactUs/Githublogo.png') }}"></a>
             <a href= "https://www.linkedin.com/in/nicole-rodrigues-6b35a0152/">
-            <img src="{{url_for('static', filename = 'Photo_ContactUs/Inlogo.png') }}"</a></p>
+            <img src="{{url_for('static', filename = 'Photo_ContactUs/Inlogo.png') }}"></a></p>
             
         </div>
     </div>
@@ -106,28 +114,40 @@ div.bigdiv{
         <div class="info">
             <h4><b>Gabriella Tenorio<b></h4>
             <p> Major: Microbiology<br>
-            gtenorio@mail.sfsu.com<br>
-            Creator of Contact Us Page <br>
-            Word Cloud Mockup<br>
+            gtenorio@mail.sfsu.edu<br>
+            Front End: Result Page, Logo & <br>
+            Contact Us <br>
             <a href="https://github.com/gtenorio10">
-            <img src= "{{url_for('static', filename = 'Photo_ContactUs/Githublogo.png') }}"</a>
+            <img src= "{{url_for('static', filename = 'Photo_ContactUs/Githublogo.png') }}"></a>
             <a href="https://www.linkedin.com/in/gabriella-tenorio-2a159a152">
-            <img src="{{url_for('static', filename = 'Photo_ContactUs/Inlogo.png') }}"</a></p>
+            <img src="{{url_for('static', filename = 'Photo_ContactUs/Inlogo.png') }}"></a></p>
         </div>
     </div>
-
-
+<div class="page-header"><h2 id= "Mentor"><b>Computer Science Mentors</h2><b></div>
+    <!--<div class="mentor"><h3><b>Computer Science Mentors</b></h3></div>-->
     <div class="col-sm-4">
-        <h3><b>Computer Science Mentor<b></h3>
+        <!--<h3><b>Computer Science Mentors</b></h3>-->
         <img id="Poojan" src="{{url_for('static', filename = 'Photo_ContactUs/Poojan.jpg') }}" width="200px" height="200px" alt="Photo of Poojan">
-        <div class="infopd">
+        <div class="infom">
             <h4><b>Poojan Dave<b></h4>
             <p>Major: Computer Science<br>
             dave.sfsu@gmail.com <br>
             <a href="https://github.com/pdave-sfsu">
-            <img src="{{url_for('static', filename = 'Photo_ContactUs/Githublogo.png') }}"</a>
+            <img src="{{url_for('static', filename = 'Photo_ContactUs/Githublogo.png') }}"></a>
             <a href="https://www.linkedin.com/in/poojan-dave/">
-            <img src="{{url_for('static', filename = 'Photo_ContactUs/Inlogo.png') }}"</a></p>
+            <img src="{{url_for('static', filename = 'Photo_ContactUs/Inlogo.png') }}"></a></p>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <img id="John" src="{{url_for('static', filename = 'Photo_ContactUs/prof.jpg') }}" width="200px" height="200px" alt="Photo of John">
+        <div class="infom">
+            <h4><b>John Lazzarini<b></h4>
+            <p>Major: Computer Science<br>
+            jlazzari@mail.sfsu.edu <br>
+            <a href="https://github.com/johnlazzarini">
+            <img src="{{url_for('static', filename = 'Photo_ContactUs/Githublogo.png') }}"></a>
+            <a href="https://www.linkedin.com/in/john-lazzarini/">
+            <img src="{{url_for('static', filename = 'Photo_ContactUs/Inlogo.png') }}"></a></p>
         </div>
     </div>
 
