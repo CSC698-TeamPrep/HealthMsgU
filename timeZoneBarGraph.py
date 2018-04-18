@@ -1,4 +1,7 @@
 # for the graph
+import matplotlib
+
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt;
 plt.rcdefaults()
 import numpy as np
@@ -49,6 +52,9 @@ for tweet in tweepy.Cursor(api.search,q=wordSearch).items(10):
     ct = counts.get("Central Time (US & Canada)", default_value)
     print(ct)
     nz =(10-(pt+et+mt+az+hz+ct))  #to show the other time zone tweets and no timezone tweets
+
+fig = plt.figure
+
 objects = ('Eastern  ', 'Pacific  ', 'Mountain  ', 'Alaska', 'Central  ', 'Hawaii','Other')
 y_pos = np.arange(len(objects))
 # to give each bar its value
@@ -59,4 +65,6 @@ plt.xticks(y_pos, objects)
 plt.ylabel('Number of Tweets')
 plt.title('Time Zones')
 
-plt.show()
+#plt.show()  to display on pycharm
+#savfig= saves graph as png
+plt.savefig('ah.png')
