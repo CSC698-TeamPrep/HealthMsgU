@@ -135,7 +135,8 @@ def main():
     plt.pie(sizes, explode=explode, labels=labels, colors=colors,
             autopct='%1.1f%%', shadow=True, startangle=140)
     plt.axis('equal')
-    plt.show()
+    plt.savefig('ah.png')  #saves the pie as a png image
+    #plt.show()   shows the pie on pycharm
 
 
 
