@@ -1,0 +1,17 @@
+<html>
+  <head>  
+
+  </head>
+
+  <body>
+
+  	<form action="{{ url_for('render_results') }}" method="post">
+    	<input type="text" name="searchterm">
+    	<input type="submit">
+	</form>
+    {% block div %}  {% endblock %}
+
+    {% block tweets %}  {% endblock %}
+
+</body>
+</html>

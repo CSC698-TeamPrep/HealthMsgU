@@ -1,21 +1,19 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request
+
 
 app = Flask(__name__)
-app.config.from_object(__name__)
+
+
 
 @app.route('/')
-def index():
-	return render_template('index.html')
+def tester():
+	return render_template('tester.html')
 
-@app.route('/ContactUs')
-def ContactUs():
-	return render_template('ContactUsNew.html')
+@app.route('/render_results', methods = ['POST'])
+def render_results():
+	if request.method == 'POST':
+		result = request.form['searchterm']
+		
+	return render_template('render_results.html', result = result)
 
-@app.route('/About')
-def AboutProject():
-	return render_template('about_project.html')
-
-@app.route('/Results')
-def Results():
-	return render_template('results.html')
 
