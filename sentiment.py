@@ -76,6 +76,12 @@ class TwitterClient(object):
                 # saving sentiment of tweet
                 parsed_tweet['sentiment'] = self.get_tweet_sentiment(tweet.text)
 
+                parsed_tweet['id'] = tweet.id
+
+                parsed_tweet['user_name'] = tweet.user.screen_name
+
+                parsed_tweet['url'] = "https://twitter.com/" + tweet.user.screen_name + "/status/" + str(tweet.id)
+
                 # appending parsed tweet to tweets list
                 if tweet.retweet_count > 0:
                     # if tweet has retweets, ensure that it is appended only once

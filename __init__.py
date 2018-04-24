@@ -14,7 +14,7 @@ app.config.from_object(__name__)
 app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 
 class ReusableForm(Form):
-    	tweets = TextField('SearchField:', validators=[validators.required()])
+        tweets = TextField('SearchField:')
 
 def sentiment(userinput):
     # creating object of TwitterClient Class
@@ -26,55 +26,66 @@ def sentiment(userinput):
     # picking positive tweets from tweets
     ptweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']
     # percentage of positive tweets
-    flash("<h1>Positive tweets percentage: {} %".format(100 * len(ptweets) / len(tweets)) + "</h1>")
+    print("Positive tweets percentage: {} %".format(100 * len(ptweets) / len(tweets)))
     # picking negative tweets from tweets
     ntweets = [tweet for tweet in tweets if tweet['sentiment'] == 'negative']
     # percentage of negative tweets
-    flash("Negative tweets percentage: {} %".format(100 * len(ntweets) / len(tweets)))
+    print("Negative tweets percentage: {} %".format(100 * len(ntweets) / len(tweets)))
     # percentage of neutral tweets
     #leftoverTweets = tweets - ntweets - ptweets
     print("Neutral tweets percentage: {} % \ ".format(100 * (len(tweets) - len(ntweets) - len(ptweets)) / len(tweets)))
 
     # printing first 5 positive tweets
-    print("\n\nPositive tweets:")
-    for tweet in ptweets[:10]:
-        print(tweet['text'])
+    
 
     # printing first 5 negative tweets
-    print("\n\nNegative tweets:")
-    for tweet in ntweets[:10]:
-        print(tweet['text'])
+    
+
+    return ptweets, ntweets
+
+
 
 # We define our URL route, and the controller to handle requests
 @app.route('/', methods=['GET', 'POST'])
 def index():
-	form = ReusableForm(request.form)
-	print (form.errors)
-	if request.method == 'POST':
-		tweets=request.form['tweets']
-		sentiment(tweets)
-		#print (tweets)
-		if form.validate():
-			for tweet in tweepy.Cursor(api.search,q=tweets).items(5):
-				flash(tweet)
-		else:
-			flash('All the form fields are required. ')
-	return render_template('index.html', form = form)
+    form = ReusableForm(request.form)
+        #print (tweets)
+        #for tweet in tweepy.Cursor(api.search,q=tweets).items(5):
+                #UserName = tweet.user.screen_name
+                #flash(tweet.id)
+                #flash(tweet.expanded_url)
 
-@app.route('/ContactUs')
+    return render_template('index.html', form = form)
+
+@app.route('/render_Data', methods = ['GET', 'POST'])
+def render_Data():
+    if request.method == 'POST':
+        tweets=request.form['tweets']
+        ptweets, ntweets = sentiment(tweets)
+        print("\n\nPositive tweets:")
+        for tweet in ptweets[:10]:
+            print(tweet['text'])
+        print("\n\nNegative tweets:")
+        for tweet in ntweets[:10]:
+            print(tweet['text'])
+        
+    return render_template('render_Data.html', ptweets = ptweets, ntweets = ntweets)
+
+
+@app.route('/ContactUs', methods = ['GET', 'POST'])
 def ContactUs():
-	return render_template('ContactUsNew.html')
+    return render_template('ContactUsNew.html')
 
 @app.route('/About')
 def AboutProject():
-	return render_template('about_project.html')
+    return render_template('about_project.html')
 
 @app.route('/Results')
 def Results():
-	#def get_Tweets(wordSearch):
-		#wordSearch = input("What's input do you want to search for? ")
-	#print("This is your input: " + wordSearch )
-		
-			#print(tweet.text)
-	return render_template('results.html')
+    #def get_Tweets(wordSearch):
+        #wordSearch = input("What's input do you want to search for? ")
+    #print("This is your input: " + wordSearch )
+        
+            #print(tweet.text)
+    return render_template('results.html')
 
