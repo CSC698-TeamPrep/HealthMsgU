@@ -10,12 +10,12 @@ totaltweets=""
 for tweet in tweepy.Cursor(api.search,q=wordSearch).items(2):   #to write to file the tweets
     totaltweets += tweet.text
     print(totaltweets)
-    fh = open("beast.txt", "w")
+    fh = open(" WF.txt", "w")
     fh.write(totaltweets)
     fh.close()
 
 from collections import Counter
-with open("beast.txt") as f:    #to count the frequency
+with open("WF.txt") as f:    #to count the frequency
      wordcount = Counter(f.read().split())
 
      # print(wordcount)
@@ -38,6 +38,6 @@ for word, frequency in y.items():
 # print(df)
 
 #to make the file blank
-done = open("beast.txt", "w")
+done = open("WF.txt", "w")
 done.write("")
 done.close()
