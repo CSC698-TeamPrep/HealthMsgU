@@ -1,0 +1,43 @@
+import tweepy
+auth = tweepy.OAuthHandler("iHTvDAptJAx3PwfYfw00Qa6sX", "6Gp8kYPR3kULcPPdW3k1gYopQEi4NBdSfFPP8ifHCE0gwkQWCX")
+auth.set_access_token("938932912870658048-ICcR2mOBhIvNtIQmMSVdtuQbUsCxIXL", "QU7ArtcKW1aEQYcf0HlMUpS7m07UtQmUNl42OvAJyZ5SH")
+api = tweepy.API(auth)
+
+wordSearch = input("What's input do you want to search for? ")
+print("This is your input: " + wordSearch )
+
+totaltweets=""
+for tweet in tweepy.Cursor(api.search,q=wordSearch).items(2):   #to write to file the tweets
+    totaltweets += tweet.text
+    print(totaltweets)
+    fh = open("beast.txt", "w")
+    fh.write(totaltweets)
+    fh.close()
+
+from collections import Counter
+with open("beast.txt") as f:    #to count the frequency
+     wordcount = Counter(f.read().split())
+
+     # print(wordcount)
+     # print('mmmmmmmmmmmmm')
+     #look at library for stop words
+     invalid = {'I', 'my', 'who','whose','whom', 'their','they', 'them', 'the', 'there', 'then', 'than','you','are','a','an'}
+     def without_keys(d, keys):
+         ...
+         return {x: d[x] for x in d if x not in keys}
+     y=without_keys(wordcount, invalid)
+     print(y)
+
+print('Word Frequency')
+for word, frequency in y.items():
+  print('{} {}'.format(word, frequency))
+
+
+# import pandas as pd
+# df = pd.DataFrame({y}.items(), columns=["name", "age"])
+# print(df)
+
+#to make the file blank
+done = open("beast.txt", "w")
+done.write("")
+done.close()
