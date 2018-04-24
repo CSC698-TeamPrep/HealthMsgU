@@ -68,6 +68,6 @@ def FlaskBarGraph():
 
     #plt.show()  to display on pycharm
     #savfig= saves graph as png
-    plt.savefig('ah.png')
-
+    barG=plt.savefig('ah.png')
+    return barG
 FlaskBarGraph()
