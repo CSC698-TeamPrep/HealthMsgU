@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Home Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="healthmsgu.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  
+  
+</head>
+<nav class="navbar navbar-inverse navbar-fixed-top" >
+  <div class="container container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ url_for('index') }}">
+        <img class="img-responsive" style="margin-top: -10px; height: auto; width: auto; max-height: 40px; max-width: 250px; " alt = "Brand" src="{{url_for('static', filename = 'Logos/hmulogo.png') }}">
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="navbar-right nav navbar-nav ">
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Results
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li class="disabled"><a href="#Results">Top 5 Tweets</a></li>
+          <li class="disabled"><a href="#wordcloud">Word Cloud</a></li>
+          <li class="disabled"><a href="#wordfreq">Word Frequency Table</a></li>
+          <li class="disabled"><a href="#Map">Map</a></li>
+        </ul>
+      </li>
+          <li><a href="{{ url_for('AboutProject') }}">About</a></li>
+          <li><a href="{{ url_for('ContactUs') }}">Contact Us</a></li>
+        </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container w3-round-large" style= "display: block;" id= "HMUText">
+  <h2 style = "text-align:center;margin-top:70px">Welcome to HealthMsgU!</h2>
+  <p style = "text-align:center;"><strong>HealthMsgU is a web platform that
+    enables researchers to gauge public perception and find trends regarding health topics.</strong></p>
+  <p style = "text-align:center;"><strong>The web platform gathers posts using the Twitter API and analyzes them to generate visualized statistical data.</strong></p>
+</div>
+
+<div class = "container">
+  <div class = "row" style = "padding:40px 15px;">
+    <div class = "col-md-2"></div>
+    <div class = "col-md-8">
+      <h1>Data</h1>
+        <ul>
+          {% for ptweet in ptweets %}
+            <li><a href={{ptweet.url}}>{{ ptweet.text }}</a></li>
+          {% endfor %}
+        </ul>
+      <!--<form>
+        <p style = "text-align:center;"> Enter a health related search term below:<p>
+        <div class="input-group">
+          <input id = "search_input" type="query" class = "form-control" placeholder="Search">
+          <div class="input-group-btn">
+            <a href="{{ url_for('Results') }}"><button onclick= "search_term()" class="btn btn-default"></a>
+              <i class="glyphicon glyphicon-search"></i>
+            </button>
+        </div>
+      </form>-->
+    </div>
+    <div align = "center" style="margin:auto; padding:40px;" >
+      <a class="twitter-timeline"  href="search_link" data-widget-id="936370028651229185">Tweets</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+      </script>
+
+    <div>
+    <div class = "col-md-2"></div>
+  </div>
+</div>
+</div>
+</body>
+
+</div>
+</html>
