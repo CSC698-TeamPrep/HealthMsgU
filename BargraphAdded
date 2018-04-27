@@ -420,7 +420,7 @@ def main():
     plt.bar(y_pos, performance, align='center', alpha=0.5)
     plt.xticks(y_pos, objects)
     plt.ylabel('Number of Tweets')
-    plt.title('Time Zones')
+    plt.title('Tweets in US Time Zones')
 
     # plt.show()  to display on pycharm
     # savfig= saves graph as png
@@ -459,7 +459,7 @@ def main():
     plt.bar(y_pos, performance, align='center', alpha=0.5)
     plt.xticks(y_pos, objects)
     plt.ylabel('Number of Tweets')
-    plt.title('Positive tweets in US Time Zones')
+    plt.title('Positive Tweets in US Time Zones')
 
     # plt.show()  to display on pycharm
     # savfig= saves graph as png
@@ -498,7 +498,7 @@ def main():
     plt.bar(y_pos, performance, align='center', alpha=0.5)
     plt.xticks(y_pos, objects)
     plt.ylabel('Number of Tweets')
-    plt.title('Negative tweets in US Time Zones')
+    plt.title('Negative Tweets in US Time Zones')
 
     # plt.show()  to display on pycharm
     # savfig= saves graph as png
@@ -538,7 +538,7 @@ def main():
     plt.bar(y_pos, performance, align='center', alpha=0.5)
     plt.xticks(y_pos, objects)
     plt.ylabel('Number of Tweets')
-    plt.title('Neutral tweets in US Time Zones')
+    plt.title('Neutral Tweets in US Time Zones')
 
     # plt.show()  to display on pycharm
     # savfig= saves graph as png
