@@ -382,6 +382,7 @@ def main():
     #
     # ax.legend(custom_lines, ['Pacific','Mountain', 'Central', 'Eastern', 'One Tweet'], loc= 4)
 
+    #timezone for all tweets
     timeZoneStr = []
     for tweet in alltweets:
         timeZoneStr.append(tweet['timezone'])
@@ -423,8 +424,126 @@ def main():
 
     # plt.show()  to display on pycharm
     # savfig= saves graph as png
-    barG = plt.savefig('test.png')
+    barG = plt.savefig('barchart.png')
+    plt.close()
 
+#timezone for  positive tweets
+    p_timeZoneStr = []
+    for tweet in ptweets:
+        p_timeZoneStr.append(tweet['timezone'])
+    print(p_timeZoneStr)
+
+    p_counts = Counter(p_timeZoneStr)
+    print(p_counts)
+    p_pt = p_counts.get("Pacific Time (US & Canada)", default_value)
+    print(p_pt)
+    p_et = p_counts.get("Eastern Time (US & Canada)", default_value)
+    print(p_et)
+    p_mt = p_counts.get("Mountain Time (US & Canada)", default_value)
+    print(p_mt)
+    p_az = p_counts.get("Alaska", default_value)
+    print(p_az)
+    p_hz = p_counts.get("Hawaii", default_value)
+    print(p_hz)
+    p_ct = p_counts.get("Central Time (US & Canada)", default_value)
+    print(p_ct)
+    #p_nz = (10 - (p_pt + p_et + p_mt + p_az + p_hz + p_ct))  # to show the other time zone tweets and no timezone tweets
+
+    fig = plt.figure
+
+    objects = ('Eastern  ', 'Pacific  ', 'Mountain  ', 'Alaska', 'Central  ', 'Hawaii')
+    y_pos = np.arange(len(objects))
+    # to give each bar its value
+    performance = [p_et, p_pt, p_mt, p_az, p_ct, p_hz]
+
+    plt.bar(y_pos, performance, align='center', alpha=0.5)
+    plt.xticks(y_pos, objects)
+    plt.ylabel('Number of Tweets')
+    plt.title('Positive tweets in US Time Zones')
+
+    # plt.show()  to display on pycharm
+    # savfig= saves graph as png
+    barG = plt.savefig('positive_barchart.png')
+    plt.close()
+
+#timezone for  negative tweets
+    n_timeZoneStr = []
+    for tweet in ntweets:
+        n_timeZoneStr.append(tweet['timezone'])
+    print(n_timeZoneStr)
+
+    n_counts = Counter(n_timeZoneStr)
+    print(n_counts)
+    n_pt = n_counts.get("Pacific Time (US & Canada)", default_value)
+    print(n_pt)
+    n_et = n_counts.get("Eastern Time (US & Canada)", default_value)
+    print(n_et)
+    n_mt = n_counts.get("Mountain Time (US & Canada)", default_value)
+    print(n_mt)
+    n_az = n_counts.get("Alaska", default_value)
+    print(n_az)
+    n_hz = n_counts.get("Hawaii", default_value)
+    print(n_hz)
+    n_ct = n_counts.get("Central Time (US & Canada)", default_value)
+    print(n_ct)
+    #p_nz = (10 - (p_pt + p_et + p_mt + p_az + p_hz + p_ct))  # to show the other time zone tweets and no timezone tweets
+
+    fig = plt.figure
+
+    objects = ('Eastern  ', 'Pacific  ', 'Mountain  ', 'Alaska', 'Central  ', 'Hawaii')
+    y_pos = np.arange(len(objects))
+    # to give each bar its value
+    performance = [n_et, n_pt, n_mt, n_az, n_ct, n_hz]
+
+    plt.bar(y_pos, performance, align='center', alpha=0.5)
+    plt.xticks(y_pos, objects)
+    plt.ylabel('Number of Tweets')
+    plt.title('Negative tweets in US Time Zones')
+
+    # plt.show()  to display on pycharm
+    # savfig= saves graph as png
+    barG = plt.savefig('negative_barchart.png')
+    plt.close()
+
+#timezone for  neutral tweets
+    neu_timeZoneStr = []
+    for tweet in neutweets:
+        neu_timeZoneStr.append(tweet['timezone'])
+    print(neu_timeZoneStr)
+   #print(lens(neu_timeZoneStr))
+
+    neu_counts = Counter(neu_timeZoneStr)
+    print(neu_counts)
+    neu_pt = neu_counts.get("Pacific Time (US & Canada)", default_value)
+    print(neu_pt)
+    neu_et = neu_counts.get("Eastern Time (US & Canada)", default_value)
+    print(neu_et)
+    neu_mt = neu_counts.get("Mountain Time (US & Canada)", default_value)
+    print(neu_mt)
+    neu_az = neu_counts.get("Alaska", default_value)
+    print(neu_az)
+    neu_hz = neu_counts.get("Hawaii", default_value)
+    print(neu_hz)
+    neu_ct = neu_counts.get("Central Time (US & Canada)", default_value)
+    print(neu_ct)
+    #p_nz = (10 - (p_pt + p_et + p_mt + p_az + p_hz + p_ct))  # to show the other time zone tweets and no timezone tweets
+
+    fig = plt.figure
+
+    objects = ('Eastern  ', 'Pacific  ', 'Mountain  ', 'Alaska', 'Central  ', 'Hawaii')
+    y_pos = np.arange(len(objects))
+    # to give each bar its value
+    performance = [neu_et, neu_pt, neu_mt, neu_az, neu_ct, neu_hz]
+
+    plt.bar(y_pos, performance, align='center', alpha=0.5)
+    plt.xticks(y_pos, objects)
+    plt.ylabel('Number of Tweets')
+    plt.title('Neutral tweets in US Time Zones')
+
+    # plt.show()  to display on pycharm
+    # savfig= saves graph as png
+    barG = plt.savefig('neutral_barchart.png')
+    plt.close()
 
 if __name__ == "__main__":
     # calling main function
