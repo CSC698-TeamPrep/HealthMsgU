@@ -179,7 +179,7 @@ def main():
         strOfAllTweet+=tweet['text']
         print(strOfAllTweet)
 
-    #for word frequency
+    #for word frequency: no sentiment
     wordlist = strOfAllTweet.split()
     wordfreq = []
     # awordfreq[key] = value
@@ -192,13 +192,66 @@ def main():
 
         dic = dict(zip(words.split(), freq.split()))
         print(dic)
-        # dictt = dict(zip((words),(freq )))
+
         print('Words Frequency')
         for words, freq in dic.items():
             print('{} {}'.format(words, freq))
 
 
+    # for word frequency: positive tweets
+    wordlist = strOfPosTweet.split()
+    wordfreq = []
+    # awordfreq[key] = value
+    for w in wordlist:
+        wordfreq.append(wordlist.count(w))
 
+        # string
+        words = (str(wordlist))
+        freq = (str(wordfreq))
+
+        dic = dict(zip(words.split(), freq.split()))
+        print(dic)
+
+        print('Words Frequency')
+        for words, freq in dic.items():
+            print('{} {}'.format(words, freq))
+
+
+    # for word frequency: negative tweets
+    wordlist = strOfNegTweet.split()
+    wordfreq = []
+    # awordfreq[key] = value
+    for w in wordlist:
+        wordfreq.append(wordlist.count(w))
+
+        # string
+        words = (str(wordlist))
+        freq = (str(wordfreq))
+
+        dic = dict(zip(words.split(), freq.split()))
+        print(dic)
+
+        print('Words Frequency')
+        for words, freq in dic.items():
+            print('{} {}'.format(words, freq))
+
+    # for word frequency: neutral tweets
+    wordlist = strOfNeuTweet.split()
+    wordfreq = []
+    # awordfreq[key] = value
+    for w in wordlist:
+        wordfreq.append(wordlist.count(w))
+
+        # string
+        words = (str(wordlist))
+        freq = (str(wordfreq))
+
+        dic = dict(zip(words.split(), freq.split()))
+        print(dic)
+
+        print('Words Frequency')
+        for words, freq in dic.items():
+            print('{} {}'.format(words, freq))
 
 
 
