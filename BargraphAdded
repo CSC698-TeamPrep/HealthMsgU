@@ -174,9 +174,35 @@ def main():
     alltweets = [tweet for tweet in tweets if
                  tweet['sentiment'] == 'negative' or tweet['sentiment'] == 'positive' or tweet[
                      'sentiment'] == 'neutral']
+
     for tweet in alltweets:
         strOfAllTweet+=tweet['text']
         print(strOfAllTweet)
+
+    #for word frequency
+    wordlist = strOfAllTweet.split()
+    wordfreq = []
+    # awordfreq[key] = value
+    for w in wordlist:
+        wordfreq.append(wordlist.count(w))
+
+        # string
+        words = (str(wordlist))
+        freq = (str(wordfreq))
+
+        dic = dict(zip(words.split(), freq.split()))
+        print(dic)
+        # dictt = dict(zip((words),(freq )))
+        print('Words Frequency')
+        for words, freq in dic.items():
+            print('{} {}'.format(words, freq))
+
+
+
+
+
+
+
 
     print('###########Pos')
     # This will print postive tweet text
