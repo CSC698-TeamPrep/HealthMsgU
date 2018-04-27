@@ -1,0 +1,431 @@
+# sentiment analysis pie chart
+import matplotlib.pyplot as plt
+# line means plt= matplotlib.pyplor
+import matplotlib.animation as animation
+
+#This is for the map plot
+#from mpl_toolkits.basemap import Basemap
+# from matplotlib.colors import rgb2hex, Normalize
+# from matplotlib.patches import Polygon
+# from matplotlib.colorbar import ColorbarBase
+# from matplotlib.lines import Line2D
+# from matplotlib.font_manager import FontProperties
+import numpy as np
+import random
+from collections import Counter
+
+import re
+import tweepy
+from tweepy import OAuthHandler
+from textblob import TextBlob
+from os import path
+#from wordcloud import WordCloud, STOPWORDS
+#Most code borrowed from https://www.geeksforgeeks.org/twitter-sentiment-analysis-using-python/
+#Slightly modified, original borrowed code actually doesn't compile without slight modifications
+
+class TwitterClient(object):
+    '''
+    Generic Twitter Class for sentiment analysis.
+    '''
+
+    def __init__(self):
+        '''
+        Class constructor or initialization method.
+        '''
+        # keys and tokens from the Twitter Dev Console
+        consumer_key = 'iHTvDAptJAx3PwfYfw00Qa6sX'
+        consumer_secret = '6Gp8kYPR3kULcPPdW3k1gYopQEi4NBdSfFPP8ifHCE0gwkQWCX'
+        access_token = '938932912870658048-ICcR2mOBhIvNtIQmMSVdtuQbUsCxIXL'
+        access_token_secret = 'QU7ArtcKW1aEQYcf0HlMUpS7m07UtQmUNl42OvAJyZ5SH'
+
+        # attempt authentication
+        try:
+            # create OAuthHandler object
+            self.auth = OAuthHandler(consumer_key, consumer_secret)
+            # set access token and secret
+            self.auth.set_access_token(access_token, access_token_secret)
+            # create tweepy API object to fetch tweets
+            self.api = tweepy.API(self.auth)
+        except:
+            print("Error: Authentication Failed")
+
+    def clean_tweet(self, tweet):
+        '''
+        Utility function to clean tweet text by removing links, special characters
+        using simple regex statements.
+        '''
+        return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])| (\w+:\ / \ / \S+)", " ", tweet).split())
+
+    def get_tweet_sentiment(self, tweet):
+        '''
+        Utility function to classify sentiment of passed tweet
+        using textblob's sentiment method
+        '''
+        # create TextBlob object of passed tweet text
+        analysis = TextBlob(self.clean_tweet(tweet))
+        # set sentiment
+        if analysis.sentiment.polarity > 0:
+            return 'positive'
+        elif analysis.sentiment.polarity == 0:
+            return 'neutral'
+        else:
+            return 'negative'
+
+    def get_tweets(self, query, count=10):
+        '''
+        Main function to fetch tweets and parse them.
+        '''
+        # empty list to store parsed tweets
+        tweets = []
+
+        try:
+            # call twitter api to fetch tweets
+            fetched_tweets = self.api.search(q=query, count=count)
+
+            # parsing tweets one by one
+            for tweet in fetched_tweets:
+                # empty dictionary to store required params of a tweet
+                parsed_tweet = {}
+
+                # saving text of tweet
+                parsed_tweet['text'] = tweet.text
+                # saving sentiment of tweet
+                parsed_tweet['sentiment'] = self.get_tweet_sentiment(tweet.text)
+                parsed_tweet['id'] = tweet.id
+
+                parsed_tweet['user_name'] = tweet.user.screen_name
+
+                parsed_tweet['url'] = "https://twitter.com/" + tweet.user.screen_name + "/status/" + str(tweet.id)
+
+                x = tweet.author
+                parsed_tweet['timezone'] = x.time_zone
+
+                # appending parsed tweet to tweets list
+                if tweet.retweet_count > 0:
+                    # if tweet has retweets, ensure that it is appended only once
+                    if parsed_tweet not in tweets:
+                        tweets.append(parsed_tweet)
+                else:
+                    tweets.append(parsed_tweet)
+
+            # return parsed tweets
+            return tweets
+
+        except tweepy.TweepError as e:
+            # print error (if any)
+            print("Error : " + str(e))
+
+
+def main():
+    # creating object of TwitterClient Class
+    api = TwitterClient()
+    # calling function to get tweets
+    searchterm = input("Enter query: ")
+    tweets = api.get_tweets(query=searchterm, count=10)
+    print(tweets)
+    #print (tweets)
+    # picking positive tweets from tweets
+    ptweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']
+    # percentage of positive tweets
+    x=(100 * len(ptweets) / len(tweets))
+    print("positive")
+    print (x)
+
+    # picking negative tweets from tweets
+    ntweets = [tweet for tweet in tweets if tweet['sentiment'] == 'negative']
+
+    # percentage of negative tweets
+    y=(100 * len(ntweets) / len(tweets))
+    # percentage of neutral tweets
+    #leftoverTweets = tweets - ntweets - ptweets
+    print("negative")
+    print(y)
+    # print("Neutral tweets percentage: {} % ".format(100 * (len(tweets) - len(ntweets) - len(ptweets)) / len(tweets)))
+    z=(100 * (len(tweets) - len(ntweets) - len(ptweets)) / len(tweets))
+    print("neutral")
+    print(z)
+    print(ntweets)
+
+    ##########################################################
+    # this is just how you start creating a pie chart
+    #here you create the slice names, the sizes and colors for the slices
+    labels = 'Positive', 'Negative', 'Neutral'
+    sizes = [x, y, z]
+    colors = ['gold', 'pink', 'lightskyblue']
+    explode = (0, 0, 0)  # explode 1st slice
+
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+            autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.axis('equal')
+    plt.savefig('ah.png')  #saves the pie as a png image
+    plt.close()
+    #plt.show()   shows the pie on pycharm
+
+    ########################################################
+    #This is connects the tweets together
+
+    strOfAllTweet = " "
+    strOfPosTweet = " "
+    strOfNegTweet = " "
+    strOfNeuTweet = " "
+
+    #This will print all the tweet text
+    print('###########All')
+    alltweets = [tweet for tweet in tweets if
+                 tweet['sentiment'] == 'negative' or tweet['sentiment'] == 'positive' or tweet[
+                     'sentiment'] == 'neutral']
+    for tweet in alltweets:
+        strOfAllTweet+=tweet['text']
+        print(strOfAllTweet)
+
+    print('###########Pos')
+    # This will print postive tweet text
+    print(ptweets)
+    for tweet in ptweets:
+        strOfPosTweet += tweet['text']
+        print(strOfPosTweet)
+
+    print('###########Neg')
+    for tweet in ntweets:
+        strOfNegTweet += tweet['text']
+        print(strOfNegTweet)
+        print(strOfNegTweet)
+
+    print('###########Neu')
+    neutweets = [tweet for tweet in tweets if tweet['sentiment'] == 'neutral']
+    for tweet in neutweets:
+        strOfNeuTweet += tweet['text']
+        print(strOfNeuTweet)
+    print('********')
+    ##########################################################
+    #This makes the word cloud
+    # stopwords = set(STOPWORDS)
+    # stopwords.add("http")
+    # stopwords.add("https")
+    # stopwords.add("_")
+    # stopwords.add("RT")
+    # stopwords.add("via")
+    # stopwords.add("LOL")
+    # stopwords.add("lol")
+    # stopwords.add("co")
+    # stopwords.add("mean")
+    # stopwords.add("either")
+    # stopwords.add("amp")
+
+    #This is a cloud for all tweets
+    # if len(alltweets) > 1:
+    #     wordcloud = WordCloud(max_words=800, background_color="white", stopwords=stopwords, collocations=False,
+    #                       relative_scaling=0.5).generate(strOfAllTweet)
+    #     plt.title('All Tweets')
+    #     plt.imshow(wordcloud, interpolation='bilinear')
+    #     plt.axis("off")
+    #     plt.savefig('WordCloudAll.png')
+    #
+    # #This is a cloud for positive tweet
+    # if len(ptweets) > 1:
+    #     wordcloud = WordCloud(max_words=800, background_color="white", stopwords=stopwords, collocations=False,
+    #                       relative_scaling=0.5).generate(strOfPosTweet)
+    #     plt.title('Positive Tweets')
+    #     plt.imshow(wordcloud, interpolation='bilinear')
+    #     plt.axis("off")
+    #     plt.savefig('WordCloudPos.png')
+    #
+    # # This is a cloud for negative tweet
+    # if len(ntweets) > 1:
+    #     wordcloud = WordCloud(max_words=800, background_color="white", stopwords=stopwords, collocations=False,
+    #                       relative_scaling=0.5).generate(strOfNegTweet)
+    #     plt.title('Negative Tweets')
+    #     plt.imshow(wordcloud, interpolation='bilinear')
+    #     plt.axis("off")
+    #     plt.savefig('WordCloudNeg.png')
+    #
+    # # This is a cloud for Neutral tweet
+    # if len(neutweets) > 1:
+    #     wordcloud = WordCloud(max_words=800, background_color="white", stopwords=stopwords, collocations=False,
+    #                       relative_scaling=0.5).generate(strOfNeuTweet)
+    #     plt.title('Neutral Tweets')
+    #     plt.imshow(wordcloud, interpolation='bilinear')
+    #     plt.axis("off")
+    #     plt.savefig('WordCloudNeu.png')
+    ####################################
+    #This is for the map
+    # fig, ax = plt.subplots()
+    # m = Basemap(llcrnrlon=-119,llcrnrlat=22,urcrnrlon=-64,urcrnrlat=49,
+    #         projection='lcc',lat_1=33,lat_2=45,lon_0=-95)
+    # m_ = Basemap(llcrnrlon=-190,llcrnrlat=20,urcrnrlon=-143,urcrnrlat=46,
+    #             projection='merc',lat_ts=20)  # do not change these numbers
+    # shp_info = m.readshapefile('st99_d00','states',drawbounds=False,
+    #                            linewidth=0.45,color='gray') #drawbounds True gives the shape of the states border
+    # shp_info_ = m_.readshapefile('st99_d00','states',drawbounds=False)
+    # popdensity = {
+    # #######################
+    # #Hawaii
+    # 'Hawaii':  70.10,
+    # #######################
+    # #Alaska
+    # 'Alaska':     10.42,
+    # ########################
+    # #Pacific
+    # 'California':  30.85,
+    # 'Washington':  30.20,
+    # 'Oregon':  30.76,
+    # 'Nevada':  30.03,
+    # ########################
+    # #Mountain
+    # 'Idaho':   0.40,
+    # 'Arizona':     0.43,
+    # 'Colorado':    0.01,
+    # 'Montana':     0.39,
+    # 'New Mexico':  0.79,
+    # 'Wyoming':      0.96,
+    # 'Utah':	 0.50,
+    # ########################
+    # #Central
+    # 'Kansas':  150.69,
+    # 'Nebraska':    150.60,
+    # 'South Dakota':	 150.84,
+    # 'North Dakota':	 150.59,
+    # 'Alabama':     150.84,
+    # 'Arkansas':    150.82,
+    # 'Missouri':    150.36,
+    # 'Texas':   150.75,
+    # 'Illinois':    150.27,
+    # 'Tennessee':   150.29,
+    # 'Louisiana':   150.61,
+    # 'Kentucky':   150.28,
+    # 'Wisconsin':  150.13,
+    # 'Iowa':	 150.22,
+    # 'Minnesota':  150.86,
+    # 'Mississippi':	 150.42,
+    # 'Oklahoma':    150.40,
+    # ########################
+    # #Eastern
+    # 'Indiana':    110.46,
+    # 'Michigan':    110.55,
+    # 'Florida':     110.43,
+    # 'New Jersey':  110.00,
+    # 'Rhode Island':   110.35,
+    # 'Massachusetts':   110.68,
+    # 'Connecticut':	  110.40,
+    # 'Maryland':   110.23,
+    # 'New York':    110.18,
+    # 'Delaware':    110.87,
+    # 'Ohio':	 110.05,
+    # 'Pennsylvania':	 110.80,
+    # 'Virginia':    110.03,
+    # 'North Carolina':  110.80,
+    # 'Georgia':     110.59,
+    # 'New Hampshire':   110.20,
+    # 'South Carolina':  110.45,
+    # 'West Virginia':   110.00,
+    # 'Vermont':     110.41,
+    # 'Maine':  110.95}
+    # ########################
+
+
+    #%% -------- choose a color for each state based on population density. -------
+    # colors={}
+    # statenames=[]
+    # cmap = plt.cm.Set1
+    # vmin = 0; vmax = 450 # set range.
+    # norm = Normalize(vmin=vmin, vmax=vmax)
+    # for shapedict in m.states_info:
+    #     statename = shapedict['NAME']
+    #     # skip DC and Puerto Rico.
+    #     if statename not in ['District of Columbia','Puerto Rico']:
+    #         pop = popdensity[statename]
+    #         # calling colormap with value between 0 and 1 returns
+    #         # rgba value.  Invert color range (hot colors are high
+    #         # population), take sqrt root to spread out colors more.
+    #         colors[statename] = cmap(np.sqrt((pop-vmin)/(vmax-vmin)))[:3]
+    #     statenames.append(statename)
+    #
+    # #%% ---------  cycle through state names, color each one.  --------------------
+    # for nshape,seg in enumerate(m.states):
+    #     # skip DC and Puerto Rico.
+    #     if statenames[nshape] not in ['Puerto Rico', 'District of Columbia']:
+    #         color = rgb2hex(colors[statenames[nshape]])
+    #         poly = Polygon(seg,facecolor=color,edgecolor=color)
+    #         ax.add_patch(poly)
+    #
+    # AREA_1 = 0.005  # exclude small Hawaiian islands that are smaller than AREA_1
+    # AREA_2 = AREA_1 * 30.0  # exclude Alaskan islands that are smaller than AREA_2
+    # AK_SCALE = 0.19  # scale down Alaska to show as a map inset
+    # HI_OFFSET_X = -1900000  # X coordinate offset amount to move Hawaii "beneath" Texas
+    # HI_OFFSET_Y = 250000    # similar to above: Y offset for Hawaii
+    # AK_OFFSET_X = -250000   # X offset for Alaska (These four values are obtained
+    # AK_OFFSET_Y = -750000   # via manual trial and error, thus changing them is not recommended.)
+    #
+    # for nshape, shapedict in enumerate(m_.states_info):  # plot Alaska and Hawaii as map insets
+    #     if shapedict['NAME'] in ['Alaska', 'Hawaii']:
+    #         seg = m_.states[int(shapedict['SHAPENUM'] - 1)]
+    #         if shapedict['NAME'] == 'Hawaii' and float(shapedict['AREA']) > AREA_1:
+    #             seg = [(x + HI_OFFSET_X, y + HI_OFFSET_Y) for x, y in seg]
+    #             color = rgb2hex(colors[statenames[nshape]])
+    #         elif shapedict['NAME'] == 'Alaska' and float(shapedict['AREA']) > AREA_2:
+    #             seg = [(x*AK_SCALE + AK_OFFSET_X, y*AK_SCALE + AK_OFFSET_Y)\
+    #                    for x, y in seg]
+    #             color = rgb2hex(colors[statenames[nshape]])
+    #         poly = Polygon(seg, facecolor=color, edgecolor='gray', linewidth=.45)
+    #         ax.add_patch(poly)
+    #
+    #
+    # custom_lines = [#Line2D([0], [0], color=cmap(0.4), lw=2),
+    #                 #Line2D([0], [0], color=cmap(.2), lw=2),
+    #                 Line2D([0], [0], color=cmap(0.3), lw=2),
+    #                 Line2D([0], [0], color=cmap(0.), lw=2),
+    #                 Line2D([0], [0], color=cmap(0.6), lw=2),
+    #                 Line2D([0], [0], color=cmap(0.5), lw=2),
+    #                 Line2D([0], [0], marker='o', color='w',
+    #                           markerfacecolor='black', markersize=6)
+    #                 ]
+    #
+    # ax.legend(custom_lines, ['Pacific','Mountain', 'Central', 'Eastern', 'One Tweet'], loc= 4)
+
+    timeZoneStr = []
+    for tweet in alltweets:
+        timeZoneStr.append(tweet['timezone'])
+    print(timeZoneStr)
+
+    counts = Counter(timeZoneStr)
+    # counts= dictionary
+    print(counts)
+    # this is what is printed out => Counter({'None': 7, 'Central Time (US & Canada)': 1, 'America/Caracas': 1, 'Arizona': 1})
+
+    # count.get is how you get values from the key
+    default_value = 0  # the default_value gives you a 0 for the time zone,
+    # as sometimes a timezone isn't there and then its value will be none and this mess up the code
+    pt = counts.get("Pacific Time (US & Canada)", default_value)
+    print(pt)
+    et = counts.get("Eastern Time (US & Canada)", default_value)
+    print(et)
+    mt = counts.get("Mountain Time (US & Canada)", default_value)
+    print(mt)
+    az = counts.get("Alaska", default_value)
+    print(az)
+    hz = counts.get("Hawaii", default_value)
+    print(hz)
+    ct = counts.get("Central Time (US & Canada)", default_value)
+    print(ct)
+    nz = (10 - (pt + et + mt + az + hz + ct))  # to show the other time zone tweets and no timezone tweets
+
+    fig = plt.figure
+
+    objects = ('Eastern  ', 'Pacific  ', 'Mountain  ', 'Alaska', 'Central  ', 'Hawaii', 'Other')
+    y_pos = np.arange(len(objects))
+    # to give each bar its value
+    performance = [et, pt, mt, az, ct, hz, nz]
+
+    plt.bar(y_pos, performance, align='center', alpha=0.5)
+    plt.xticks(y_pos, objects)
+    plt.ylabel('Number of Tweets')
+    plt.title('Time Zones')
+
+    # plt.show()  to display on pycharm
+    # savfig= saves graph as png
+    barG = plt.savefig('test.png')
+
+
+if __name__ == "__main__":
+    # calling main function
+    main()
