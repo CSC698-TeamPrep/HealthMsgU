@@ -5,6 +5,7 @@ from .sentiment import TwitterClient
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from io import BytesIO
+import os
 
 # Instantiate our app...
 # Name it the '__name__' of this module (tweet-harvest)
@@ -70,6 +71,16 @@ def sentiment(userinput):
 
     return ptweets, ntweets, ptweet_analyses, ntweets_analyses, nut_tweet_analyses
 
+@app.template_filter('autoversion')
+def autoversion_filter(filename):
+  # determining fullpath might be project specific
+  fullpath = os.path.join('app/', filename[1:])
+  try:
+      timestamp = str(os.path.getmtime(fullpath))
+  except OSError:
+      return filename
+  newfilename = "{0}?v={1}".format(filename, timestamp)
+  return newfilename
 
 # We define our URL route, and the controller to handle requests
 @app.route('/', methods=['GET', 'POST'])
