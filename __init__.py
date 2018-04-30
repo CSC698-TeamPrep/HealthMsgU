@@ -63,6 +63,7 @@ def sentiment(userinput):
     plt.pie(sizes, explode=explode, labels=labels, colors=colors,
             autopct='%1.1f%%', shadow=True, startangle=140)
     plt.savefig('static/ah.png')
+    plt.close("all")
     
     # Convert sentiments analysis stats to string so they can be displayed as HTML
     ptweet_analyses = "Positive tweets:" + str(ptweet_analyses_pie) + "%"
@@ -71,16 +72,6 @@ def sentiment(userinput):
 
     return ptweets, ntweets, ptweet_analyses, ntweets_analyses, nut_tweet_analyses
 
-@app.template_filter('autoversion')
-def autoversion_filter(filename):
-  # determining fullpath might be project specific
-  fullpath = os.path.join('app/', filename[1:])
-  try:
-      timestamp = str(os.path.getmtime(fullpath))
-  except OSError:
-      return filename
-  newfilename = "{0}?v={1}".format(filename, timestamp)
-  return newfilename
 
 # We define our URL route, and the controller to handle requests
 @app.route('/', methods=['GET', 'POST'])

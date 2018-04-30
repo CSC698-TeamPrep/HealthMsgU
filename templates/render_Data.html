@@ -54,7 +54,7 @@
     <div class = "col-md-2"></div>
     <div class = "col-md-8">
       
-      <img src='{{url_for('static', filename = 'ah.png') | autoversion}}'>
+      <img src= {{'static/ah.png'}}>
       <h1>{{ptweet_analyses}}</h1>
         <ul>
           {% for ptweet in ptweets %}
