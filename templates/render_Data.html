@@ -56,6 +56,7 @@
       <img src= {{'static/WordCloudAll.png'}}>
       <img src= {{'static/WordCloudNeg.png'}}>
       <img src= {{'static/WordCloudPos.png'}}>
+    
       <h1>{{ptweet_analyses}}</h1>
         <ul>
           {% for ptweet in ptweets %}
@@ -63,7 +64,6 @@
           {% endfor %}
         </ul>
       <h1>{{nut_weets_analyses}}</h1>
-        
 
       <h1>{{ntweets_analyses}}</h1>
         <ul>
@@ -71,6 +71,8 @@
             <li><a href={{ntweet.url}}>{{ ntweet.text }}</a></li>
           {% endfor %}
         </ul>
+        <img src= {{'static/ah.png'}}>
+
         <img src= {{'static/basemap.png'}}>
         <img src= {{'static/barchart.png'}}>
     </div>

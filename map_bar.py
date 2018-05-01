@@ -29,65 +29,65 @@ def data_vis(tweets, ptweets, ntweets, term):
     remove_back = lambda s: ' '.join(i for i in s.split() if '//' not in i)
 
     #This will print all the tweet text
-    print('###########All')
+    #print('###########All')
     alltweets = [tweet for tweet in tweets if
                  tweet['sentiment'] == 'negative' or tweet['sentiment'] == 'positive' or tweet[
                      'sentiment'] == 'neutral']
     for tweet in alltweets:
         strOfAllTweet += " " + tweet['text']
-        print(strOfAllTweet)
+        #print(strOfAllTweet)
 
     # This gets rid of the @ username and &amp
     newStrAll = " ".join(list(filter(lambda x: x[0] != '@', strOfAllTweet.split())))
     newStrAll2 = " ".join(list(filter(lambda x: x[0] != '&', newStrAll.split())))
     strOfAllTweet = remove_back(newStrAll2)
 
-    print("OOOOOOOO")
-    print(strOfAllTweet)
-    print('OOOOOOOO')
+    #print("OOOOOOOO")
+    #print(strOfAllTweet)
+    #print('OOOOOOOO')
 
-    print('###########Pos')
+    #print('###########Pos')
     # This will print positive tweet text
-    print(ptweets)
+    #print(ptweets)
     for tweet in ptweets:
         strOfPosTweet += " " + tweet['text']
-        print(strOfPosTweet)
+        #print(strOfPosTweet)
 
     #This gets rid of the @ username and &amp
     newStrPos = " ".join(list(filter(lambda x:x[0]!='@', strOfPosTweet.split())))
     newStr2 = " ".join(list(filter(lambda x: x[0] != '&', newStrPos.split())))
     strOfPosTweet = remove_back(newStr2)
 
-    print("OOOOOOOO")
-    print(strOfPosTweet)
-    print('OOOOOOOO')
+    #print("OOOOOOOO")
+    #print(strOfPosTweet)
+    #print('OOOOOOOO')
 
-    print('###########Neg')
+    #print('###########Neg')
     for tweet in ntweets:
         strOfNegTweet += " " + tweet['text']
-        print(strOfNegTweet)
-        print(strOfNegTweet)
+        #print(strOfNegTweet)
+        #print(strOfNegTweet)
 
     newStrNeg = " ".join(list(filter(lambda x: x[0] != '@', strOfNegTweet.split())))
     newStrNeg2 = " ".join(list(filter(lambda x: x[0] != '&', newStrNeg.split())))
     strOfNegTweet = remove_back(newStrNeg2)
-    print("OOOOOOOO")
-    print(strOfNegTweet)
-    print('OOOOOOOO')
+    #print("OOOOOOOO")
+    #print(strOfNegTweet)
+    #print('OOOOOOOO')
 
-    print('###########Neu')
+    #print('###########Neu')
     neutweets = [tweet for tweet in tweets if tweet['sentiment'] == 'neutral']
     for tweet in neutweets:
         strOfNeuTweet += " " + tweet['text']
-        print(strOfNeuTweet)
+        #print(strOfNeuTweet)
 
     newStrNeu = " ".join(list(filter(lambda x: x[0] != '@', strOfNeuTweet.split())))
     newStrNeu2 = " ".join(list(filter(lambda x: x[0] != '&', newStrNeu.split())))
     strOfNeuTweet = remove_back(newStrNeu2)
-    print("OOOOOOOO")
-    print(strOfNeuTweet)
-    print('OOOOOOOO')
-    print('********')
+    #print("OOOOOOOO")
+    #print(strOfNeuTweet)
+    #print('OOOOOOOO')
+    #print('********')
     ##########################################################
     #This makes the word cloud
     stopwords = set(STOPWORDS)
@@ -164,28 +164,28 @@ def data_vis(tweets, ptweets, ntweets, term):
     timeZoneStr = []
     for tweet in alltweets:
         timeZoneStr.append(tweet['timezone'])
-    print(timeZoneStr)
+    #print(timeZoneStr)
 
     counts = Counter(timeZoneStr)
     # counts= dictionary
-    print(counts)
+    #print(counts)
     # this is what is printed out => Counter({'None': 7, 'Central Time (US & Canada)': 1, 'America/Caracas': 1, 'Arizona': 1})
 
     # count.get is how you get values from the key
     default_value = 0  # the default_value gives you a 0 for the time zone,
     # as sometimes a timezone isn't there and then its value will be none and this mess up the code
     pt = counts.get("Pacific Time (US & Canada)", default_value)
-    print(pt)
+    #print(pt)
     et = counts.get("Eastern Time (US & Canada)", default_value)
-    print(et)
+    #print(et)
     mt = counts.get("Mountain Time (US & Canada)", default_value)
-    print(mt)
+    #print(mt)
     az = counts.get("Alaska", default_value)
-    print(az)
+    #print(az)
     hz = counts.get("Hawaii", default_value)
-    print(hz)
+    #print(hz)
     ct = counts.get("Central Time (US & Canada)", default_value)
-    print(ct)
+    #print(ct)
 
     fig = plt.figure
 
@@ -208,22 +208,22 @@ def data_vis(tweets, ptweets, ntweets, term):
     p_timeZoneStr = []
     for tweet in ptweets:
         p_timeZoneStr.append(tweet['timezone'])
-    print(p_timeZoneStr)
+    #print(p_timeZoneStr)
 
     p_counts = Counter(p_timeZoneStr)
-    print(p_counts)
+    #print(p_counts)
     p_pt = p_counts.get("Pacific Time (US & Canada)", default_value)
-    print(p_pt)
+    #print(p_pt)
     p_et = p_counts.get("Eastern Time (US & Canada)", default_value)
-    print(p_et)
+    #print(p_et)
     p_mt = p_counts.get("Mountain Time (US & Canada)", default_value)
-    print(p_mt)
+    #print(p_mt)
     p_az = p_counts.get("Alaska", default_value)
-    print(p_az)
+    #print(p_az)
     p_hz = p_counts.get("Hawaii", default_value)
-    print(p_hz)
+    #print(p_hz)
     p_ct = p_counts.get("Central Time (US & Canada)", default_value)
-    print(p_ct)
+    #print(p_ct)
 
     fig = plt.figure
 
@@ -246,22 +246,22 @@ def data_vis(tweets, ptweets, ntweets, term):
     n_timeZoneStr = []
     for tweet in ntweets:
         n_timeZoneStr.append(tweet['timezone'])
-    print(n_timeZoneStr)
+    #print(n_timeZoneStr)
 
     n_counts = Counter(n_timeZoneStr)
-    print(n_counts)
+    #print(n_counts)
     n_pt = n_counts.get("Pacific Time (US & Canada)", default_value)
-    print(n_pt)
+    #print(n_pt)
     n_et = n_counts.get("Eastern Time (US & Canada)", default_value)
-    print(n_et)
+    #print(n_et)
     n_mt = n_counts.get("Mountain Time (US & Canada)", default_value)
-    print(n_mt)
+    #print(n_mt)
     n_az = n_counts.get("Alaska", default_value)
-    print(n_az)
+    #print(n_az)
     n_hz = n_counts.get("Hawaii", default_value)
-    print(n_hz)
+    #print(n_hz)
     n_ct = n_counts.get("Central Time (US & Canada)", default_value)
-    print(n_ct)
+    #print(n_ct)
 
     fig = plt.figure
 
@@ -284,23 +284,23 @@ def data_vis(tweets, ptweets, ntweets, term):
     neu_timeZoneStr = []
     for tweet in neutweets:
         neu_timeZoneStr.append(tweet['timezone'])
-    print(neu_timeZoneStr)
+    #print(neu_timeZoneStr)
     # print(lens(neu_timeZoneStr))
 
     neu_counts = Counter(neu_timeZoneStr)
-    print(neu_counts)
+    #print(neu_counts)
     neu_pt = neu_counts.get("Pacific Time (US & Canada)", default_value)
-    print(neu_pt)
+    #print(neu_pt)
     neu_et = neu_counts.get("Eastern Time (US & Canada)", default_value)
-    print(neu_et)
+    #print(neu_et)
     neu_mt = neu_counts.get("Mountain Time (US & Canada)", default_value)
-    print(neu_mt)
+    #print(neu_mt)
     neu_az = neu_counts.get("Alaska", default_value)
-    print(neu_az)
+    #print(neu_az)
     neu_hz = neu_counts.get("Hawaii", default_value)
-    print(neu_hz)
+    #print(neu_hz)
     neu_ct = neu_counts.get("Central Time (US & Canada)", default_value)
-    print(neu_ct)
+    #print(neu_ct)
 
     fig = plt.figure
 
