@@ -2,6 +2,7 @@ from flask import Flask,render_template, url_for, flash, request, send_file, mak
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
 import tweepy
 from .sentiment import TwitterClient
+from .map_bar import data_vis
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from io import BytesIO
@@ -40,22 +41,24 @@ def sentiment(userinput):
     #searchterm = input("Enter query: ")
     tweets = api.get_tweets(query=api.searchterm, count=10)
 
+    term  =api.searchterm
+
     # picking positive tweets from tweets
     ptweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']
     # percentage of positive tweets
-    ptweet_analyses_pie = 100 * len(ptweets) / len(tweets)
+    x = 100 * len(ptweets) / len(tweets)
     
     # picking negative tweets from tweets
     ntweets = [tweet for tweet in tweets if tweet['sentiment'] == 'negative']
     # percentage of negative tweets
-    ntweets_analyses_pie = (100 * len(ntweets) / len(tweets))
+    y = (100 * len(ntweets) / len(tweets))
     
     # percentage of neutral tweets
     #leftoverTweets = tweets - ntweets - ptweets
-    nut_tweet_analyses_pie = (100 * (len(tweets) - len(ntweets) - len(ptweets)) / len(tweets))
+    z = (100 * (len(tweets) - len(ntweets) - len(ptweets)) / len(tweets))
     
     labels = 'Positive', 'Negative', 'Neutral'
-    sizes = [ptweet_analyses_pie,nut_tweet_analyses_pie,ntweets_analyses_pie]
+    sizes = [x,y,z]
     colors = ['gold', 'pink', 'lightskyblue']
     explode = (0, 0, 0)  # explode 1st slice
     # Plot
@@ -66,9 +69,11 @@ def sentiment(userinput):
     plt.close("all")
     
     # Convert sentiments analysis stats to string so they can be displayed as HTML
-    ptweet_analyses = "Positive tweets:" + str(ptweet_analyses_pie) + "%"
-    ntweets_analyses = "Negative tweets:" + str(ntweets_analyses_pie)
-    nut_tweet_analyses = "Neutral tweets:" + str(nut_tweet_analyses_pie) + "%"
+    ptweet_analyses = "Positive tweets:" + str(x) + "%"
+    ntweets_analyses = "Negative tweets:" + str(y)
+    nut_tweet_analyses = "Neutral tweets:" + str(z) + "%"
+
+    data_vis(tweets, ptweets, ntweets, term)
 
     return ptweets, ntweets, ptweet_analyses, ntweets_analyses, nut_tweet_analyses
 
