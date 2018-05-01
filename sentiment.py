@@ -84,6 +84,9 @@ class TwitterClient(object):
 
                 parsed_tweet['url'] = "https://twitter.com/" + tweet.user.screen_name + "/status/" + str(tweet.id)
 
+                x = tweet.author
+                parsed_tweet['timezone'] = x.time_zone
+
                 # appending parsed tweet to tweets list
                 if tweet.retweet_count > 0:
                     # if tweet has retweets, ensure that it is appended only once
