@@ -66,7 +66,7 @@ def sentiment(userinput):
 
     # picking positive tweets from tweets
     ptweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']
-    print("Top 10 most frequent words in positive tweets: " + getFrequentWordsFrom(ptweets))
+    #print("Top 10 most frequent words in positive tweets: " + getFrequentWordsFrom(ptweets))
     # percentage of positive tweets
     x = 100 * len(ptweets) / len(tweets)
     

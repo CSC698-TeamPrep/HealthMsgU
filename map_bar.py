@@ -108,6 +108,7 @@ def data_vis(tweets, ptweets, ntweets, term):
     if len(alltweets) > 1:
         wordcloud = WordCloud(max_words=500, background_color="white", stopwords=stopwords, collocations=False,
                           relative_scaling=0.5).generate(strOfAllTweet)
+        print(WordCounts)
         plt.title('All Tweets')
         plt.imshow(wordcloud, interpolation='bilinear')
         plt.axis("off")
