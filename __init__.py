@@ -2,11 +2,13 @@ from flask import Flask,render_template, url_for, flash, request, send_file, mak
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
 import tweepy
 from .sentiment import TwitterClient
+from .wordcount import WordCount
 from .map_bar import data_vis
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from io import BytesIO
 import os
+import operator
 
 # Instantiate our app...
 # Name it the '__name__' of this module (tweet-harvest)
@@ -34,6 +36,26 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
 class ReusableForm(Form):
         tweets = TextField('SearchField:')
 
+
+def getWordCounts(wordList):
+    result = {}
+    for word in wordList:
+        result.setdefault(word, 0)
+        result[word] += 1
+
+    return result
+
+
+def getFrequentWordsFrom(s):
+    wordNumberToReturn = 10
+
+    scores = getWordCounts(s.split())
+    scores = sorted(scores.items(), key=operator.itemgetter(1))
+    scores = reversed(scores)
+    scores = list(x[0] for x in scores)
+
+    return scores[0:wordNumberToReturn]
+
 def sentiment(userinput):
     # creating object of TwitterClient Class
     api = TwitterClient(userinput)
@@ -45,6 +67,7 @@ def sentiment(userinput):
 
     # picking positive tweets from tweets
     ptweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']
+    print("Top 10 most frequent words in positive tweets: " + getFrequentWordsFrom(ptweets))
     # percentage of positive tweets
     x = 100 * len(ptweets) / len(tweets)
     
