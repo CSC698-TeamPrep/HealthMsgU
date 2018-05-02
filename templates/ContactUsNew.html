@@ -10,19 +10,15 @@
   <link rel="stylesheet" type="text/css" href="healthmsgu.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
-
-
 div.pic{
     width:200px;
 	height:200px;
 	margin: 70px;
 	display: inline-block;
 }
-
 div.info{
     text-align: left;
 }
-
 div.mentor{
     text-align: left;
     float:left
@@ -30,7 +26,6 @@ div.mentor{
 div.infom{
     text-align: left;
 }
-
 div.bigdiv{
     .row;
 	text-align:center;
@@ -38,9 +33,6 @@ div.bigdiv{
 	width:1200px;
     height:1000px;
 }
-
-
-
 </style>
 </head>
 <body>
@@ -61,15 +53,9 @@ div.bigdiv{
         <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Results
         <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li class="disabled"><a href="#Results">Top 5 Tweets</a></li>
-          <li class="disabled"><a href="#wordcloud">Word Cloud</a></li>
-          <li class="disabled"><a href="#wordfreq">Word Frequency Table</a></li>
-          <li class="disabled"><a href="#Map">Map</a></li>
-        </ul>
       </li>
           <li><a href="{{ url_for('AboutProject') }}">About</a></li>
-          <li class="active"><a href="{{ url_for('ContactUs') }}">Contact Us</a></li>
+          <li class= "active"><a href="{{ url_for('ContactUs') }}">Contact Us</a></li>
         </ul>
     </div>
   </div>
@@ -86,8 +72,6 @@ div.bigdiv{
             <h4><b>Emily Fryer<b></h4>
             <p> Major: Ecology<br>
             efryer@mail.sfsu.edu <br>
-            Front End: Index Page & <br>
-            Back End: Retrieving/Displaying Data<br>
             <a href="https://github.com/efryer333">
             <img src="{{url_for('static', filename = 'Photo_ContactUs/Githublogo.png') }}"></a></p>
         </div>
@@ -99,8 +83,6 @@ div.bigdiv{
             <h4><b>Nicole Rodrigues<b></h4>
             <p> Major: Cell & Molecular<br>
             nic0le@mail.sfsu.edu<br>
-            Front End: About Us Page & <br>
-            Back End: Retrieving Data<br>
             <a href="https://github.com/N-Rodrigues">
             <img src="{{url_for('static', filename = 'Photo_ContactUs/Githublogo.png') }}"></a>
             <a href= "https://www.linkedin.com/in/nicole-rodrigues-6b35a0152/">
@@ -115,8 +97,6 @@ div.bigdiv{
             <h4><b>Gabriella Tenorio<b></h4>
             <p> Major: Microbiology<br>
             gtenorio@mail.sfsu.edu<br>
-            Front End: Result Page, Logo & <br>
-            Contact Us <br>
             <a href="https://github.com/gtenorio10">
             <img src= "{{url_for('static', filename = 'Photo_ContactUs/Githublogo.png') }}"></a>
             <a href="https://www.linkedin.com/in/gabriella-tenorio-2a159a152">
