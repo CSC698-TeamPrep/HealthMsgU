@@ -12,6 +12,7 @@
   
   
 </head>
+<body>
 <nav class="navbar navbar-inverse navbar-fixed-top" >
   <div class="container container-fluid">
     <div class="navbar-header">
@@ -45,43 +46,37 @@
 
 <div class="container w3-round-large" style= "display: block;" id= "HMUText">
   <h2 style = "text-align:center;margin-top:70px">Welcome to HealthMsgU!</h2>
-  <p style = "text-align:center;"><strong>HealthMsgU is a web platform that
-    enables researchers to gauge public perception and find trends regarding health topics.</strong></p>
-  <p style = "text-align:center;"><strong>The web platform gathers posts using the Twitter API and analyzes them to generate visualized statistical data.</strong></p>
+  <p style = "text-align:center;"><strong>Click on the HMU logo above to conduct another search.</strong></p>
 </div>
 
 <div class = "container">
   <div class = "row" style = "padding:40px 15px;">
     <div class = "col-md-2"></div>
-    <div class = "col-md-8">
-      <h1>Data</h1>
+    <div class = "col-md-8"> 
+      <img src= {{'static/WordCloudAll.png'}}>
+      <img src= {{'static/WordCloudNeg.png'}}>
+      <img src= {{'static/WordCloudPos.png'}}>
+    
+      <h1>{{ptweet_analyses}}</h1>
         <ul>
           {% for ptweet in ptweets %}
             <li><a href={{ptweet.url}}>{{ ptweet.text }}</a></li>
           {% endfor %}
         </ul>
-      <!--<form>
-        <p style = "text-align:center;"> Enter a health related search term below:<p>
-        <div class="input-group">
-          <input id = "search_input" type="query" class = "form-control" placeholder="Search">
-          <div class="input-group-btn">
-            <a href="{{ url_for('Results') }}"><button onclick= "search_term()" class="btn btn-default"></a>
-              <i class="glyphicon glyphicon-search"></i>
-            </button>
-        </div>
-      </form>-->
-    </div>
-    <div align = "center" style="margin:auto; padding:40px;" >
-      <a class="twitter-timeline"  href="search_link" data-widget-id="936370028651229185">Tweets</a>
-      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-      </script>
+      <h1>{{nut_weets_analyses}}</h1>
 
-    <div>
-    <div class = "col-md-2"></div>
-  </div>
+      <h1>{{ntweets_analyses}}</h1>
+        <ul>
+          {% for ntweet in ntweets %}
+            <li><a href={{ntweet.url}}>{{ ntweet.text }}</a></li>
+          {% endfor %}
+        </ul>
+        <img src= {{'static/ah.png'}}>
+
+        <img src= {{'static/basemap.png'}}>
+        <img src= {{'static/barchart.png'}}>
+    </div>
 </div>
 </div>
 </body>
-
-</div>
 </html>
