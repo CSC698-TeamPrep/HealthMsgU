@@ -108,8 +108,8 @@ def data_vis(tweets, ptweets, ntweets, term):
     if len(alltweets) > 1:
         wordcloud = WordCloud(max_words=500, background_color="white", stopwords=stopwords, collocations=False,
                           relative_scaling=0.5).generate(strOfAllTweet)
-        print(WordCounts)
-        plt.title('All Tweets')
+        #print(WordCounts)
+        plt.title('All Tweets', fontsize=20)
         plt.imshow(wordcloud, interpolation='bilinear')
         plt.axis("off")
         plt.savefig('static/WordCloudAll.png')
@@ -124,7 +124,7 @@ def data_vis(tweets, ptweets, ntweets, term):
     elif len(ptweets) > 1:
         wordcloud = WordCloud(max_words=500, background_color="white", stopwords=stopwords, collocations=False,
                           relative_scaling=0.5).generate(strOfPosTweet)
-        plt.title('Positive Tweets')
+        plt.title('Positive Tweets', fontsize=20)
         plt.imshow(wordcloud, interpolation='bilinear')
         plt.axis("off")
         plt.savefig('static/WordCloudPos.png')
@@ -138,7 +138,7 @@ def data_vis(tweets, ptweets, ntweets, term):
     if len(ntweets) > 1:
         wordcloud = WordCloud(max_words=500, background_color="white", stopwords=stopwords, collocations=False,
                           relative_scaling=0.5).generate(strOfNegTweet)
-        plt.title('Negative Tweets')
+        plt.title('Negative Tweets', fontsize=20)
         plt.imshow(wordcloud, interpolation='bilinear')
         plt.axis("off")
         plt.savefig('static/WordCloudNeg.png')
@@ -152,7 +152,7 @@ def data_vis(tweets, ptweets, ntweets, term):
     elif len(neutweets) > 1:
         wordcloud = WordCloud(max_words=500, background_color="white", stopwords=stopwords, collocations=False,
                           relative_scaling=0.5).generate(strOfNeuTweet)
-        plt.title('Neutral Tweets')
+        plt.title('Neutral Tweets', fontsize=20)
         plt.imshow(wordcloud, interpolation='bilinear')
         plt.axis("off")
         plt.savefig('static/WordCloudNeu.png')
@@ -526,8 +526,8 @@ def data_vis(tweets, ptweets, ntweets, term):
     m.plot(x,y, 'ko')
     #m.plot(x,y, 'ko')
 
-    ax.set_title('Time Zone for all tweets in the United States for the result:' + " " + term)
+    ax.set_title('Time Zone for all tweets in the United States for the result:' + " " + term, fontsize=14)
     #plt.show()
-    fig.set_size_inches(18.5, 10.5, forward=True)
+    fig.set_size_inches(8, 8, forward=True)
     Map = fig.savefig('static/basemap.png', dpi=100)
     plt.close()
