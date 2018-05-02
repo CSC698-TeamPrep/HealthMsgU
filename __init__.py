@@ -2,7 +2,6 @@ from flask import Flask,render_template, url_for, flash, request, send_file, mak
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
 import tweepy
 from .sentiment import TwitterClient
-from .wordcount import WordCount
 from .map_bar import data_vis
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
