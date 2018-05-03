@@ -92,12 +92,12 @@ def sentiment(userinput):
     
     # Convert sentiments analysis stats to string so they can be displayed as HTML
     ptweet_analyses = "Positive tweets:" + str(x) + "%"
-    ntweets_analyses = "Negative tweets:" + str(y)
+    ntweets_analyses = "Negative tweets:" + str(y) + "%"
     nut_tweet_analyses = "Neutral tweets:" + str(z) + "%"
 
     data_vis(tweets, ptweets, ntweets, term)
 
-    return ptweets, ntweets, ptweet_analyses, ntweets_analyses, nut_tweet_analyses
+    return term, ptweets, ntweets, ptweet_analyses, ntweets_analyses, nut_tweet_analyses
 
 
 # We define our URL route, and the controller to handle requests
@@ -110,9 +110,9 @@ def index():
 def render_Data():
     if request.method == 'POST':
         tweets=request.form['tweets']
-        ptweets, ntweets, ptweet_analyses, ntweets_analyses, nut_tweet_analyses = sentiment(tweets)
+        term, ptweets, ntweets, ptweet_analyses, ntweets_analyses, nut_tweet_analyses = sentiment(tweets)
         
-    return render_template('render_Data.html', ptweets = ptweets, ntweets = ntweets, ptweet_analyses = ptweet_analyses,
+    return render_template('render_Data.html', term = term, ptweets = ptweets, ntweets = ntweets, ptweet_analyses = ptweet_analyses,
     ntweets_analyses = ntweets_analyses, nut_tweet_analyses = nut_tweet_analyses)
 
 
