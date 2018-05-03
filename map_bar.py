@@ -450,80 +450,93 @@ def data_vis(tweets, ptweets, ntweets, term):
   #et= eastern ,pt= pacific, mt= mountain, az= alaska, ct= central, hz= hawaii,
   #If any Hawaiian time zone is dectected
     if (hz > 0):
-        hzlat = 19.8968
-        hzlon = -155.5828
+        hzlat = 27
+        hzlon = -105
         while hz != 0:
             hz -= 1
             lats.append(hzlat)
             lons.append(hzlon)
-            hzlat += random.random()
-            hzlon += random.random()
-            lats.append(hzlat)
-            lons.append(hzlon)
+            if(hz% 2 == 0):
+                hzlat += random.uniform(0.0, 1.0)
+                hzlon += random.uniform(0.0, 1.0)
+            else:
+                hzlat -= random.uniform(0.0, 1.0)
+                hzlon -= random.uniform(0.0, 1.0)    
     #If any Alaska time zone is dectected
     if (az > 0):
-        azlat = 64.2008
-        azlon = -149.4937
+        azlat = 27
+        azlon = -107
         while az != 0:
             az -= 1
             lats.append(azlat)
             lons.append(azlon)
-            azlat += random.random()
-            azlon += random.random()
-            lats.append(azlat)
-            lons.append(azlon)
+            if(az% 2 == 0):
+                azlat += random.uniform(0.0, 1.0)
+                azlon += random.uniform(0.0, 1.0)
+            else:
+                azlat -= random.uniform(0.0, 1.0)
+                azlon -= random.uniform(0.0, 1.0)
+                    
     #If any Eastern time zone is dectected
     if (et > 0):
-        elat = 37.4316
-        elon = -78.6569
+        etlat = 38
+        etlon = -79
         while et != 0:
-            et-=1
-            lats.append(elat)
-            lons.append(elon)
-            elat -= random.random()
-            elon -= random.random()
+            et -= 1
+            lats.append(etlat)
+            lons.append(etlon)
+            if(et% 2 == 0):
+                etlat += random.uniform(0.0, 1.0)
+                etlon += random.uniform(0.0, 1.0)
+            else:
+                etlat -= random.uniform(0.0, 1.0)
+                etlon -= random.uniform(0.0, 1.0)
     #If any Pacific time zone is dectected
     if (pt > 0):
-        plat = 37.5
-        plon = -118.5
+        plat = 40
+        plon =  -118.5
         while pt != 0:
             pt -= 1
-            #plon -= random.random()
-            if plat < 37.179553 and plat > 38.635730 and plon > -114.122681 and plon < -121.450562:
-                plat = 37.000
-                plon = -121.4937
-                lats.append(plat)
-                lons.append(plon)
+            lats.append(plat)
+            lons.append(plon)
+            if(pt% 2 == 0):
+                plat += random.uniform(0.0, 1.0)
+                plon += random.uniform(0.0, 1.0)
             else:
-                lats.append(plat)
-                lons.append(plon)
-                plat += random.random()
-                plon += random.random()
+                plat -= random.uniform(0.0, 1.0)
+                plon -= random.uniform(0.0, 1.0)
 
     #If any Mountain time zone is dectected
     if (mt > 0):
-        mlat = 39.5501
-        mlon = -105.7821
+        mlat = 40
+        mlon = -110.5
         while mt != 0:
             mt -= 1
             lats.append(mlat)
             lons.append(mlon)
-            mlat += random.random()
-            mlon += random.random()
+            if(mt% 2 == 0):
+                mlat += random.uniform(0.0, 1.0)
+                mlon += random.uniform(0.0, 1.0)
+            else:
+                mlat -= random.uniform(0.0, 1.0)
+                mlon -= random.uniform(0.0, 1.0)    
     #If any Central time zone is dectected
     if (ct > 0):
-        clat = 41.8780
-        clon = -93.0977
+        clat = 40
+        clon = -94.5
         while ct != 0:
             ct -= 1
             lats.append(clat)
             lons.append(clon)
-            clat -= random.random()
-            clon -= random.random()
-
+            if(ct% 2 == 0):
+                clat += random.uniform(0.0, 1.0)
+                clon += random.uniform(0.0, 1.0)
+            else:
+                clat -= random.uniform(0.0, 1.0)
+                clon -= random.uniform(0.0, 1.0)   
     x, y = m(lons, lats)  # transform coordinates
     #x, y = m(lonsHA, latsHA)
-    m.plot(x,y, 'ko')
+    m.plot(x,y, 'k.')
     #m.plot(x,y, 'ko')
 
     ax.set_title('Time Zone for all tweets in the United States for the result:' + " " + term, fontsize=14)
