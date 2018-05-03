@@ -2,6 +2,7 @@ from flask import Flask,render_template, url_for, flash, request, send_file, mak
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
 import tweepy
 from .sentiment import TwitterClient
+from .wordcount import WordCount
 from .map_bar import data_vis
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
@@ -35,43 +36,50 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
 class ReusableForm(Form):
         tweets = TextField('SearchField:')
 
-
-def getWordCounts(wordList):
-    result = {}
-    for word in wordList:
-        result.setdefault(word, 0)
-        result[word] += 1
-
-    return result
-
-
-def getFrequentWordsFrom(s):
-    wordNumberToReturn = 10
-
-    scores = getWordCounts(s.split())
-    scores = sorted(scores.items(), key=operator.itemgetter(1))
-    scores = reversed(scores)
-    scores = list(x[0] for x in scores)
-
-    return scores[0:wordNumberToReturn]
-
 def sentiment(userinput):
     # creating object of TwitterClient Class
     api = TwitterClient(userinput)
     # calling function to get tweets
     #searchterm = input("Enter query: ")
-    tweets = api.get_tweets(query=api.searchterm, count=10)
+    tweets = api.get_tweets(query=api.searchterm, count=50)
 
     term  =api.searchterm
 
     # picking positive tweets from tweets
     ptweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']
+
+    ptweetstext = ''
+    for tweet in ptweets:
+        ptweetstext += tweet["text"]
+
+    wordFreq = WordCount(ptweetstext).wordCount
+
     #print("Top 10 most frequent words in positive tweets: " + getFrequentWordsFrom(ptweets))
     # percentage of positive tweets
     x = 100 * len(ptweets) / len(tweets)
     
     # picking negative tweets from tweets
     ntweets = [tweet for tweet in tweets if tweet['sentiment'] == 'negative']
+
+    ntweet_render = []
+    count = 0
+    for tweet in ntweets:
+        if count < 5:
+            ntweet_render.append(tweet)
+            count += 1
+
+    ptweet_render = []
+    count = 0
+    for tweet in ptweets:
+        if count < 5:
+            ptweet_render.append(tweet)
+            count += 1
+
+    print("NUMBER OF CONSTRAINED TWEETS:\n")
+    print(len(ntweet_render))
+    print("\n\n")
+
+    
     # percentage of negative tweets
     y = (100 * len(ntweets) / len(tweets))
     
@@ -92,12 +100,12 @@ def sentiment(userinput):
     
     # Convert sentiments analysis stats to string so they can be displayed as HTML
     ptweet_analyses = "Positive tweets:" + str(x) + "%"
-    ntweets_analyses = "Negative tweets:" + str(y)
+    ntweets_analyses = "Negative tweets:" + str(y) + "%"
     nut_tweet_analyses = "Neutral tweets:" + str(z) + "%"
 
     data_vis(tweets, ptweets, ntweets, term)
 
-    return ptweets, ntweets, ptweet_analyses, ntweets_analyses, nut_tweet_analyses
+    return ptweets, ptweet_render,ntweets, ntweet_render, ptweet_analyses, ntweets_analyses, nut_tweet_analyses, wordFreq
 
 
 # We define our URL route, and the controller to handle requests
@@ -110,10 +118,10 @@ def index():
 def render_Data():
     if request.method == 'POST':
         tweets=request.form['tweets']
-        ptweets, ntweets, ptweet_analyses, ntweets_analyses, nut_tweet_analyses = sentiment(tweets)
+        ptweets, ptweet_render,ntweets, ntweet_render, ptweet_analyses, ntweets_analyses, nut_tweet_analyses, wordFreq = sentiment(tweets)
         
-    return render_template('render_Data.html', ptweets = ptweets, ntweets = ntweets, ptweet_analyses = ptweet_analyses,
-    ntweets_analyses = ntweets_analyses, nut_tweet_analyses = nut_tweet_analyses)
+    return render_template('render_Data.html', ptweet_render = ptweet_render, ntweet_render = ntweet_render, ptweet_analyses = ptweet_analyses,
+    ntweets_analyses = ntweets_analyses, nut_tweet_analyses = nut_tweet_analyses, wordFreq = wordFreq)
 
 
 @app.route('/ContactUs', methods = ['GET', 'POST'])

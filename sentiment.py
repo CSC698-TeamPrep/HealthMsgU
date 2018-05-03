@@ -57,7 +57,7 @@ class TwitterClient(object):
         else:
             return 'negative'
 
-    def get_tweets(self, query, count=10):
+    def get_tweets(self, query, count=50):
         '''
         Main function to fetch tweets and parse them.
         '''

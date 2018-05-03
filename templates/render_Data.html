@@ -81,7 +81,7 @@
     <div class="page-header"><h1 id= "fivetweet"><b>Top Five Recent Tweets</h1><b></div>
       <h1>{{ptweet_analyses}}</h1>
         <ul>
-          {% for ptweet in ptweets %}
+          {% for ptweet in ptweet_render %}
             <li><a href={{ptweet.url}}>{{ ptweet.text }}</a></li>
           {% endfor %}
         </ul>
@@ -89,8 +89,13 @@
 
       <h1>{{ntweets_analyses}}</h1>
         <ul>
-          {% for ntweet in ntweets %}
+          {% for ntweet in ntweet_render %}
             <li><a href={{ntweet.url}}>{{ ntweet.text }}</a></li>
+          {% endfor %}
+        </ul>
+        <ul>
+          {% for word in wordFreq %}
+            <li>  {{word}} </li>
           {% endfor %}
         </ul>
     <div class="page-header"><h1 id= "PieChart"><b>Pie chart</h1><b></div>    
