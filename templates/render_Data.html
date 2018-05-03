@@ -82,6 +82,7 @@
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#wordcloud">Word Cloud</a></li>
+          <li><a href="#wordFreq">Word Frequency</a></li>
           <li><a href="#fivetweet">Top 5 Recent Tweets</a></li>
           <li><a href="#PieChart">Pie Chart</a></li>
           <li><a href="#Map">Map</a></li>
@@ -117,6 +118,13 @@
       <img src= {{'static/WordCloudNeg.png'}} id = "NegWC">
       <img src= {{'static/WordCloudNeu.png'}} id = "NeuWC">
       
+    <div class="page-header"><h1 id= "wordFreq"><b>Most Frequently Used Words</h1><b></div>
+      <ul>
+          {% for word in wordFreq %}
+            <li>  {{word}} </li>
+          {% endfor %}
+        </ul>
+
     <div class="page-header"><h1 id= "fivetweet"><b>Top Five Recent Tweets</h1><b></div>
       <h1>{{ptweet_analyses}}</h1>
         <ul>
@@ -124,7 +132,13 @@
             <li><a href={{ptweet.url}}>{{ ptweet.text }}</a></li>
           {% endfor %}
         </ul>
-      <h1>{{nut_weets_analyses}}</h1>
+      
+      <h1>{{nut_tweet_analyses}}</h1>
+        <ul>
+          {% for nuttweet in neutralTweet_render %}
+            <li><a href={{nuttweet.url}}>{{ nuttweet.text }}</a></li>
+          {% endfor %}
+        </ul>
 
       <h1>{{ntweets_analyses}}</h1>
         <ul>
@@ -132,11 +146,7 @@
             <li><a href={{ntweet.url}}>{{ ntweet.text }}</a></li>
           {% endfor %}
         </ul>
-        <ul>
-          {% for word in wordFreq %}
-            <li>  {{word}} </li>
-          {% endfor %}
-        </ul>
+        
     <div class="page-header"><h1 id= "PieChart"><b>Pie chart</h1><b></div>    
         <img src= {{'static/ah.png'}}>
     <div class="page-header"><h1 id= "Map"><b>Map</h1><b></div>

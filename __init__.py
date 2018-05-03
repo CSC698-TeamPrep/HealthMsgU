@@ -58,21 +58,31 @@ def sentiment(userinput):
     # percentage of positive tweets
     x = 100 * len(ptweets) / len(tweets)
     
+    neutralTweets = [tweet for tweet in tweets if tweet['sentiment'] == 'neutral']
+
     # picking negative tweets from tweets
     ntweets = [tweet for tweet in tweets if tweet['sentiment'] == 'negative']
-
-    ntweet_render = []
-    count = 0
-    for tweet in ntweets:
-        if count < 5:
-            ntweet_render.append(tweet)
-            count += 1
 
     ptweet_render = []
     count = 0
     for tweet in ptweets:
         if count < 5:
             ptweet_render.append(tweet)
+            count += 1
+
+    neutralTweet_render = []
+    count = 0
+    for tweet in neutralTweets:
+        if count < 5:
+            neutralTweet_render.append(tweet)
+            count += 1
+
+
+    ntweet_render = []
+    count = 0
+    for tweet in ntweets:
+        if count < 5:
+            ntweet_render.append(tweet)
             count += 1
 
     print("NUMBER OF CONSTRAINED TWEETS:\n")
@@ -100,16 +110,16 @@ def sentiment(userinput):
     
     # Convert sentiments analysis stats to string so they can be displayed as HTML
     ptweet_analyses = "Positive tweets:" + str(x) + "%"
-    ntweets_analyses = "Negative tweets:" + str(y) + "%"
     nut_tweet_analyses = "Neutral tweets:" + str(z) + "%"
+    ntweets_analyses = "Negative tweets:" + str(y) + "%"
+    
 
     data_vis(tweets, ptweets, ntweets, term)
 
-<<<<<<< HEAD
-    return ptweets, ptweet_render,ntweets, ntweet_render, ptweet_analyses, ntweets_analyses, nut_tweet_analyses, wordFreq
-=======
-    return term, ptweets, ntweets, ptweet_analyses, ntweets_analyses, nut_tweet_analyses
->>>>>>> 6bc24b5a608eb0b499c62607bea94bf0a28c9182
+
+    return term, ptweets, ptweet_render, neutralTweets, neutralTweet_render, ntweets, ntweet_render,  ptweet_analyses, nut_tweet_analyses, ntweets_analyses, wordFreq
+
+
 
 
 # We define our URL route, and the controller to handle requests
@@ -122,17 +132,12 @@ def index():
 def render_Data():
     if request.method == 'POST':
         tweets=request.form['tweets']
-<<<<<<< HEAD
-        ptweets, ptweet_render,ntweets, ntweet_render, ptweet_analyses, ntweets_analyses, nut_tweet_analyses, wordFreq = sentiment(tweets)
+
+        term, ptweets, ptweet_render,ntweets, neutralTweets, neutralTweet_render, ntweet_render, ptweet_analyses, ntweets_analyses, nut_tweet_analyses, wordFreq = sentiment(tweets)
         
-    return render_template('render_Data.html', ptweet_render = ptweet_render, ntweet_render = ntweet_render, ptweet_analyses = ptweet_analyses,
-    ntweets_analyses = ntweets_analyses, nut_tweet_analyses = nut_tweet_analyses, wordFreq = wordFreq)
-=======
-        term, ptweets, ntweets, ptweet_analyses, ntweets_analyses, nut_tweet_analyses = sentiment(tweets)
-        
-    return render_template('render_Data.html', term = term, ptweets = ptweets, ntweets = ntweets, ptweet_analyses = ptweet_analyses,
-    ntweets_analyses = ntweets_analyses, nut_tweet_analyses = nut_tweet_analyses)
->>>>>>> 6bc24b5a608eb0b499c62607bea94bf0a28c9182
+    return render_template('render_Data.html', term = term, ptweet_render = ptweet_render, neutralTweet_render = neutralTweet_render ,ntweet_render = ntweet_render, ptweet_analyses = ptweet_analyses,
+    nut_tweet_analyses = nut_tweet_analyses, ntweets_analyses = ntweets_analyses, wordFreq = wordFreq)
+
 
 
 @app.route('/ContactUs', methods = ['GET', 'POST'])
