@@ -105,7 +105,11 @@ def sentiment(userinput):
 
     data_vis(tweets, ptweets, ntweets, term)
 
+<<<<<<< HEAD
     return ptweets, ptweet_render,ntweets, ntweet_render, ptweet_analyses, ntweets_analyses, nut_tweet_analyses, wordFreq
+=======
+    return term, ptweets, ntweets, ptweet_analyses, ntweets_analyses, nut_tweet_analyses
+>>>>>>> 6bc24b5a608eb0b499c62607bea94bf0a28c9182
 
 
 # We define our URL route, and the controller to handle requests
@@ -118,10 +122,17 @@ def index():
 def render_Data():
     if request.method == 'POST':
         tweets=request.form['tweets']
+<<<<<<< HEAD
         ptweets, ptweet_render,ntweets, ntweet_render, ptweet_analyses, ntweets_analyses, nut_tweet_analyses, wordFreq = sentiment(tweets)
         
     return render_template('render_Data.html', ptweet_render = ptweet_render, ntweet_render = ntweet_render, ptweet_analyses = ptweet_analyses,
     ntweets_analyses = ntweets_analyses, nut_tweet_analyses = nut_tweet_analyses, wordFreq = wordFreq)
+=======
+        term, ptweets, ntweets, ptweet_analyses, ntweets_analyses, nut_tweet_analyses = sentiment(tweets)
+        
+    return render_template('render_Data.html', term = term, ptweets = ptweets, ntweets = ntweets, ptweet_analyses = ptweet_analyses,
+    ntweets_analyses = ntweets_analyses, nut_tweet_analyses = nut_tweet_analyses)
+>>>>>>> 6bc24b5a608eb0b499c62607bea94bf0a28c9182
 
 
 @app.route('/ContactUs', methods = ['GET', 'POST'])

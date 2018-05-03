@@ -28,6 +28,36 @@
   #myBtn:hover {
   background-color: #555;
     }
+    #AllWC{
+    display: block;
+    }
+    #PosWC{
+    display: none;
+    }
+    #NegWC{
+    display: none;
+    }
+    #NeuWC{
+    display: none;
+    }
+    #Allbar{
+    display: block;
+    }
+    #Posbar{
+    display: none;
+    }
+    #Negbar{
+    display: none;
+    }
+    #Neubar{
+    display: none;
+    }
+    .btn btn-primary{
+    margin: 0 auto    
+    }
+    .wrapper{
+        text-align: center;
+    }
   </style>
   
 </head>
@@ -66,7 +96,7 @@
 </nav>
 
 <div class="container w3-round-large" style= "display: block;" id= "HMUText">
-  <h2 style = "text-align:center;margin-top:70px">Welcome to HealthMsgU!</h2>
+  <h1 style = "text-align:center;margin-top:70px">These are your results for: {{term}} </h1>
   <p style = "text-align:center;"><strong>Click on the HMU logo above to conduct another search.</strong></p>
 </div>
 
@@ -75,9 +105,18 @@
     <div class = "col-md-2"></div>
     <div class = "col-md-8"> 
     <div class="page-header"><h1 id= "wordcloud"><b>Word Cloud</h1><b></div>
-      <img src= {{'static/WordCloudAll.png'}}>
-      <img src= {{'static/WordCloudNeg.png'}}>
-      <img src= {{'static/WordCloudPos.png'}}>
+      <div class = "wrapper">
+      <button type="button" class="btn btn-primary" onclick = "WCA()" id = "AllWCB">All</button>
+      <button type="button" class="btn btn-primary" onclick = "WCP()" id = "PosWCB">Positive</button>
+      <button type="button" class="btn btn-primary" onclick = "WCNEG()" id = "NegWCB">Negative</button>
+      <button type="button" class="btn btn-primary" onclick = "WCNEU()" id = "NeuWCB">Neutral</button>
+      </div>
+      
+      <img src= {{'static/WordCloudAll.png'}} id= "AllWC">
+      <img src= {{'static/WordCloudPos.png'}} id = "PosWC"> 
+      <img src= {{'static/WordCloudNeg.png'}} id = "NegWC">
+      <img src= {{'static/WordCloudNeu.png'}} id = "NeuWC">
+      
     <div class="page-header"><h1 id= "fivetweet"><b>Top Five Recent Tweets</h1><b></div>
       <h1>{{ptweet_analyses}}</h1>
         <ul>
@@ -102,8 +141,17 @@
         <img src= {{'static/ah.png'}}>
     <div class="page-header"><h1 id= "Map"><b>Map</h1><b></div>
         <img src= {{'static/basemap.png'}}>
-    <div class="page-header"><h1 id= "TimeZone"><b>Time Zone</h1><b></div>    
-        <img src= {{'static/barchart.png'}}>
+    <div class="page-header"><h1 id= "TimeZone"><b>Time Zone</h1><b></div> 
+      <div class = "wrapper">
+      <button type="button" class="btn btn-primary" onclick = "BarA()" id = "AllWCB">All</button>
+      <button type="button" class="btn btn-primary" onclick = "BarP()" id = "PosWCB">Positive</button>
+      <button type="button" class="btn btn-primary" onclick = "BarNEG()" id = "NegWCB">Negative</button>
+      <button type="button" class="btn btn-primary" onclick = "BarNEU()" id = "NeuWCB">Neutral</button>    
+        <img src= {{'static/barchart.png'}} id = "Allbar">
+        <img src= {{'static/positive_barchart.png'}} id = "Posbar">
+        <img src= {{'static/negative_barchart.png'}} id = "Negbar">
+        <img src= {{'static/neutral_barchart.png'}} id = "Neubar">
+        </div>
     </div>
 </div>
 </div>
@@ -121,6 +169,59 @@ function scrollFunction() {
 function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+}
+
+
+
+function WCA() {
+    document.getElementById("AllWC").style.display = "block";
+    document.getElementById("PosWC").style.display = "none";
+    document.getElementById("NegWC").style.display = "none";
+    document.getElementById("NeuWC").style.display = "none";
+}
+function WCP() {
+    document.getElementById("PosWC").style.display = "block";
+    document.getElementById("AllWC").style.display = "none";
+    document.getElementById("NegWC").style.display = "none";
+    document.getElementById("NeuWC").style.display = "none";    
+}
+function WCNEG() {
+    document.getElementById("NegWC").style.display = "block";
+    document.getElementById("AllWC").style.display = "none";
+    document.getElementById("PosWC").style.display = "none";
+    document.getElementById("NeuWC").style.display = "none";
+}
+function WCNEU() {
+    document.getElementById("NeuWC").style.display = "block";
+    document.getElementById("AllWC").style.display = "none";
+    document.getElementById("NegWC").style.display = "none";
+    document.getElementById("PosWC").style.display = "none";
+}
+
+//This for Bar Chart
+function BarA() {
+    document.getElementById("Allbar").style.display = "block";
+    document.getElementById("Posbar").style.display = "none";
+    document.getElementById("Negbar").style.display = "none";
+    document.getElementById("Neubar").style.display = "none";
+}
+function BarP() {
+    document.getElementById("Posbar").style.display = "block";
+    document.getElementById("Allbar").style.display = "none";
+    document.getElementById("Negbar").style.display = "none";
+    document.getElementById("Neubar").style.display = "none";    
+}
+function BarNEG() {
+    document.getElementById("Negbar").style.display = "block";
+    document.getElementById("Allbar").style.display = "none";
+    document.getElementById("Posbar").style.display = "none";
+    document.getElementById("Neubar").style.display = "none";
+}
+function BarNEU() {
+    document.getElementById("Neubar").style.display = "block";
+    document.getElementById("Allbar").style.display = "none";
+    document.getElementById("Negbar").style.display = "none";
+    document.getElementById("Posbar").style.display = "none";
 }
 </script>
 </body>
