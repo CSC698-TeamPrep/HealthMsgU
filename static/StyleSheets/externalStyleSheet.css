@@ -2,6 +2,10 @@ body {
     background-color: lightblue;
 }
 
+.form_div{
+    background-color: blue;
+}
+
 h1 {
     color: navy;
     margin-left: 20px;

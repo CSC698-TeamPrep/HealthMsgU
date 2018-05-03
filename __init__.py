@@ -34,7 +34,7 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
 #  return newfilename
 
 class ReusableForm(Form):
-        tweets = TextField('SearchField:')
+        tweets = TextField('Search Health Term:')
 
 def sentiment(userinput):
     # creating object of TwitterClient Class
