@@ -63,6 +63,19 @@
     .wrapper{
         text-align: center;
     }
+    .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    padding: 10px;
+}
+.breaking{    
+    width:600px;
+    word-wrap: break-word;
+}
+
+  </
   </style>
   
 </head>
@@ -118,13 +131,15 @@
       <button type="button" class="btn btn-primary" onclick = "WCNEU()" id = "NeuWCB">Neutral</button>
       </div>
       
-      <img src= {{'static/WordCloudAll.png'}} id= "AllWC">
-      <img src= {{'static/WordCloudPos.png'}} id = "PosWC"> 
-      <img src= {{'static/WordCloudNeg.png'}} id = "NegWC">
-      <img src= {{'static/WordCloudNeu.png'}} id = "NeuWC">
-      
+      <div class="center">
+      <img align="center" src= {{'static/WordCloudAll.png'}} id= "AllWC">
+      <img align = "center" src= {{'static/WordCloudPos.png'}} id = "PosWC"> 
+      <img align = "center" src= {{'static/WordCloudNeg.png'}} id = "NegWC">
+      <img align = "center" src= {{'static/WordCloudNeu.png'}} id = "NeuWC">
+      </div>
+
     <div class="page-header"><h1 id= "wordFreq"><b>Most Frequently Used Words</h1><b></div>
-        <table align="center">
+        <table class = "center">
 
         {% for word in wordFreq %}
                 <tr>
@@ -133,12 +148,14 @@
         {% endfor %}
         </table>
 
+    <div>
     <div class="page-header"><h1 id= "PieChart"><b>Pie chart</h1><b></div>    
-        <img src= {{'static/ah.png'}}>
+        <img src= {{'static/ah.png'}} class="center">
+    </b>
 
     <div class="page-header"><h1 id= "fivetweet"><b>Top Five Positive/Negative Tweets</h1><b></div>
       
-      <div class="container">
+      <div class="breaking">
       <h1>Positive Tweets: </h1>
         <ul>
           {% for ptweet in ptweet_render %}
@@ -163,12 +180,15 @@
       <button type="button" class="btn btn-primary" onclick = "BarA()" id = "AllWCB">All</button>
       <button type="button" class="btn btn-primary" onclick = "BarP()" id = "PosWCB">Positive</button>
       <button type="button" class="btn btn-primary" onclick = "BarNEG()" id = "NegWCB">Negative</button>
-      <button type="button" class="btn btn-primary" onclick = "BarNEU()" id = "NeuWCB">Neutral</button>    
+      <button type="button" class="btn btn-primary" onclick = "BarNEU()" id = "NeuWCB">Neutral</button>  
+      </div>
+
+    <div class = "center">    
         <img src= {{'static/barchart.png'}} id = "Allbar">
         <img src= {{'static/positive_barchart.png'}} id = "Posbar">
         <img src= {{'static/negative_barchart.png'}} id = "Negbar">
         <img src= {{'static/neutral_barchart.png'}} id = "Neubar">
-        </div>
+        
     </div>
 </div>
 </div>
