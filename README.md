@@ -8,24 +8,22 @@ http://healthmsgu.me/
 #### The following required functionality needs to be completed for the MVP:
 
 * User can enter search terms in a search field
-* Tweets are pulled using Twitter's API
+* Tweets are pulled using Twitter's API and the Tweepy API
 * An error message is displayed if no pertinent messages are found
-* A loading screen is displayed as the web platform searches and analyzes data
-* User can move seamlessly between visualizations using tabs
-* Frequency of words associated with search terms can be viewed (as table?)
-* A map will display the location of where the Tweets are being generated
+* User can move seamlessly between visualizations using dropwdown menu
+* Frequency of words associated with search terms can be viewed
+* A map will display the time zone location of where the Tweets are being generated
 * User can view data as a word cloud based on frequency
 * User can learn more about the project by clicking "About Us" from the navigation bar
-* User can download the data for their personal use (File type?)
-* User can share the word plot via email or social media
+* Sentiment analyses is performed on the tweets displaying positive, negative and neutral results.
 
-#### The following optional features might be implemented:
+#### The following features will be implemented:
 
 * User can gather data from other social media outlets such as Facebook and reddit (web-scraping)
+* A loading animation will display while rensults are rendered.
 * User can customize generated word cloud, eg: change fonts, colors, isolate certain words
 * There can be a history of previous word clouds plotted with dates (e.g the most recent cloud or the most frequently plotted word association) (Database configuration)
 * Web platform can pull more than 7 days of Tweets
-* Timeline can display whether the Tweets are positive or negative (Machine learning)
 * 3rd party authentication for user login (Facebook, Google, security)
 
 #### Tasks our group needs to do to create the MVP:
@@ -35,14 +33,15 @@ http://healthmsgu.me/
 - [x] Create a user interface to allow the user to have search input
 - [x] Word Cloud generator: generates a word cloud depicting the most common words associated with HIV on Twitter
 - [x] Implement Google Maps API to display Tweet locations
+- [x] Implement sentiment analyses algorithm
 
 ### Architecture:
 
-**Web host:** GitHub pages
+**Web host:** Horoku, GitHub pages
 
-**Languages used:** HTML, CSS, JS
+**Languages used:** HTML, CSS, JS, Python
 
-**API used:** Twitter, Google Maps, Word cloud(?)
+**API's used:** Twitter, Tweepy, Flask, Google Maps, TextBlob, Word cloud
 
 **Resources:**  
 [Hedonometer](http://hedonometer.org/index.html)  
