@@ -54,32 +54,32 @@ http://healthmsgu.me/
 
 **Home Page**
 
-![Home Page](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/Photos/Photo_Storyboard/Homepage.PNG)
+![Home Page](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/static/Photo_Storyboard/Homepage.PNG)
 
 **Navigation Tabs**
 
-![Tabs](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/Photos/Photo_Storyboard/Tabs.PNG)
+![Tabs](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/static/Photo_Storyboard/Tabs.PNG)
 
 **Word Cloud**
 
-![Word Cloud](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/Photos/Photo_Storyboard/Wordcloud.PNG)
+![Word Cloud](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/static/Photo_Storyboard/Wordcloud.PNG)
 
 **Word Association**
 
-![Word Association](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/Photos/Photo_Storyboard/wordassociation.PNG)
+![Word Association](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/static/Photo_Storyboard/wordassociation.PNG)
 
 **Message Map**
 
-![Map](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/Photos/Photo_Storyboard/Map.PNG)
+![Map](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/static/Photo_Storyboard/Map.PNG)
 
 **Message Timeline**
 
-![Timeline](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/Photos/Photo_Storyboard/Timeline.PNG)
+![Timeline](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/static/Photo_Storyboard/Timeline.PNG)
 
 **About Us**
 
-![About Project](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/Photos/Photo_Storyboard/AboutProject.PNG)
+![About Project](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/static/Photo_Storyboard/AboutProject.PNG)
 
 **Contact Us**
 
-![Contact Us](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/Photos/Photo_Storyboard/Contact_us.PNG)
+![Contact Us](https://github.com/CSC698-TeamPrep/HealthMsgU/blob/master/static/Photo_Storyboard/Contact_us.PNG)
