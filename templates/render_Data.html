@@ -10,6 +10,11 @@
   <link rel="stylesheet" type="text/css" href="healthmsgu.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <style>
+    html *
+{
+   
+   font-family: "Arial Black", Gadget, sans-serif;
+}
   #myBtn {
   display: none;
   position: fixed;
@@ -61,7 +66,7 @@
   </style>
   
 </head>
-<body>
+<body style="background-color: #f2f2f2">
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 <nav class="navbar navbar-inverse navbar-fixed-top" >
   <div class="container container-fluid">
@@ -119,36 +124,38 @@
       <img src= {{'static/WordCloudNeu.png'}} id = "NeuWC">
       
     <div class="page-header"><h1 id= "wordFreq"><b>Most Frequently Used Words</h1><b></div>
-      <ul>
-          {% for word in wordFreq %}
-            <li>  {{word}} </li>
-          {% endfor %}
-        </ul>
+        <table align="center">
 
-    <div class="page-header"><h1 id= "fivetweet"><b>Top Five Recent Tweets</h1><b></div>
-      <h1>{{ptweet_analyses}}</h1>
+        {% for word in wordFreq %}
+                <tr>
+                        <td>{{ word }}</td>
+                </tr>
+        {% endfor %}
+        </table>
+
+    <div class="page-header"><h1 id= "PieChart"><b>Pie chart</h1><b></div>    
+        <img src= {{'static/ah.png'}}>
+
+    <div class="page-header"><h1 id= "fivetweet"><b>Top Five Positive/Negative Tweets</h1><b></div>
+      
+      <div class="container">
+      <h1>Positive Tweets: </h1>
         <ul>
           {% for ptweet in ptweet_render %}
             <li><a href={{ptweet.url}}>{{ ptweet.text }}</a></li>
           {% endfor %}
         </ul>
       
-      <h1>{{nut_tweet_analyses}}</h1>
-        <ul>
-          {% for nuttweet in neutralTweet_render %}
-            <li><a href={{nuttweet.url}}>{{ nuttweet.text }}</a></li>
-          {% endfor %}
-        </ul>
 
-      <h1>{{ntweets_analyses}}</h1>
+      <h1 style="padding: 10px">Negative Tweets: </h1>
         <ul>
           {% for ntweet in ntweet_render %}
             <li><a href={{ntweet.url}}>{{ ntweet.text }}</a></li>
           {% endfor %}
         </ul>
+      </div>
         
-    <div class="page-header"><h1 id= "PieChart"><b>Pie chart</h1><b></div>    
-        <img src= {{'static/ah.png'}}>
+    
     <div class="page-header"><h1 id= "Map"><b>Map</h1><b></div>
         <img src= {{'static/basemap.png'}}>
     <div class="page-header"><h1 id= "TimeZone"><b>Time Zone</h1><b></div> 

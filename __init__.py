@@ -47,6 +47,8 @@ def sentiment(userinput):
 
     # picking positive tweets from tweets
     ptweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']
+    # picking negative tweets from tweets
+    ntweets = [tweet for tweet in tweets if tweet['sentiment'] == 'negative']
 
     ptweetstext = ''
     for tweet in ptweets:
@@ -58,10 +60,15 @@ def sentiment(userinput):
     # percentage of positive tweets
     x = 100 * len(ptweets) / len(tweets)
     
-    neutralTweets = [tweet for tweet in tweets if tweet['sentiment'] == 'neutral']
+    # percentage of negative tweets
+    y = (100 * len(ntweets) / len(tweets))
+    
+    # percentage of neutral tweets
+    #leftoverTweets = tweets - ntweets - ptweets
+    z = (100 * (len(tweets) - len(ntweets) - len(ptweets)) / len(tweets))
+    
 
-    # picking negative tweets from tweets
-    ntweets = [tweet for tweet in tweets if tweet['sentiment'] == 'negative']
+
 
     ptweet_render = []
     count = 0
@@ -70,14 +77,7 @@ def sentiment(userinput):
             ptweet_render.append(tweet)
             count += 1
 
-    neutralTweet_render = []
-    count = 0
-    for tweet in neutralTweets:
-        if count < 5:
-            neutralTweet_render.append(tweet)
-            count += 1
-
-
+    
     ntweet_render = []
     count = 0
     for tweet in ntweets:
@@ -89,13 +89,6 @@ def sentiment(userinput):
     print(len(ntweet_render))
     print("\n\n")
 
-    
-    # percentage of negative tweets
-    y = (100 * len(ntweets) / len(tweets))
-    
-    # percentage of neutral tweets
-    #leftoverTweets = tweets - ntweets - ptweets
-    z = (100 * (len(tweets) - len(ntweets) - len(ptweets)) / len(tweets))
     
     labels = 'Positive', 'Negative', 'Neutral'
     sizes = [x,y,z]
@@ -109,15 +102,15 @@ def sentiment(userinput):
     plt.close("all")
     
     # Convert sentiments analysis stats to string so they can be displayed as HTML
-    ptweet_analyses = "Positive tweets:" + str(x) + "%"
-    nut_tweet_analyses = "Neutral tweets:" + str(z) + "%"
-    ntweets_analyses = "Negative tweets:" + str(y) + "%"
+    #ptweet_analyses = "Positive tweets:" + str(x) + "%"
+    #ntweets_analyses = "Negative tweets:" + str(y) + "%"
+    #nut_tweet_analyses = "Neutral tweets:" + str(z) + "%"
     
 
     data_vis(tweets, ptweets, ntweets, term)
 
 
-    return term, ptweets, ptweet_render, neutralTweets, neutralTweet_render, ntweets, ntweet_render,  ptweet_analyses, nut_tweet_analyses, ntweets_analyses, wordFreq
+    return term, ptweets, ptweet_render, ntweets, ntweet_render, wordFreq
 
 
 
@@ -133,10 +126,10 @@ def render_Data():
     if request.method == 'POST':
         tweets=request.form['tweets']
 
-        term, ptweets, ptweet_render,ntweets, neutralTweets, neutralTweet_render, ntweet_render, ptweet_analyses, ntweets_analyses, nut_tweet_analyses, wordFreq = sentiment(tweets)
+        term, ptweets, ptweet_render,ntweets, ntweet_render, wordFreq = sentiment(tweets)
         
-    return render_template('render_Data.html', term = term, ptweet_render = ptweet_render, neutralTweet_render = neutralTweet_render ,ntweet_render = ntweet_render, ptweet_analyses = ptweet_analyses,
-    nut_tweet_analyses = nut_tweet_analyses, ntweets_analyses = ntweets_analyses, wordFreq = wordFreq)
+    return render_template('render_Data.html', term = term, ptweet_render = ptweet_render, ntweet_render = ntweet_render,
+    wordFreq = wordFreq)
 
 
 
