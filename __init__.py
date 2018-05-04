@@ -140,12 +140,3 @@ def ContactUs():
 @app.route('/About')
 def AboutProject():
     return render_template('about_project.html')
-
-@app.route('/Results')
-def Results():
-    #def get_Tweets(wordSearch):
-        #wordSearch = input("What's input do you want to search for? ")
-    #print("This is your input: " + wordSearch )
-        
-            #print(tweet.text)
-    return render_template('results.html')

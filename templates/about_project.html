@@ -10,10 +10,16 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="healthmsgu.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
+<style type="text/css">
+  html *
+{
+   
+   font-family: "Arial Black", Gadget, sans-serif;
+}
+</style>
     
 </head>
-<body>
+<body style="background-color: #f2f2f2">
 
 
   <nav class="navbar navbar-inverse navbar-fixed-top" >
@@ -44,29 +50,30 @@
 
 <!--how to add different classes            class="container bg-info"-->
 
-<br><b><h1 style="text-align:center;margin-top:70px" >Welcome to HealthMsgU</h1> </b>
-    <div class="container bg-info w3-round-large"   >
+<br><b><h1 style="text-align:center;margin-top:70px; color: black;" >Welcome to HealthMsgU</h1> </b>
+    <div style="border: solid; background-color: white;" class="container">
 
 
 
 <p><h3  style=" color: black">This is a website for <b>researchers</b> to gauge public perception and find trends regarding health topics.
         Posts are first gathered from Twitter, and then analyzed to generate visualized statistical data.</h3> </p> </div>
 
-<br><b><h1 style="text-align:center; "> How to use the site</h1> </b>
+<br><b><h1 style="text-align:center; color: black;"> How to use the site</h1> </b>
 
     <h3 style="color: black">
 
-        <div class="container bg-info"   >
+        <div style="border: solid; background-color: white;" class="container">
             <!-- <ol> gives you an ordered list
         <ul> gives you an unordered list-->
         <ul style="list-style-type:square">
             <li>Enter search terms on the Home page.</li>
             <li>After your query has been entered, you can click the results button in the navigation bar.</li>
-            <li> Choose how to visualize your data from 3 options: Maps, Word Frequency and Word cloud.</li> </h3></div>
+            <li> The user can scroll through the results or choose to look specific results from the dropdown menu</li> </h3></div>
 
 
-    <br><b><h1 style="text-align:center;"> FAQs</h1> </b>
-<div class="container bg-info"   ><h3 style="color: black">
+    <br><b><h1 style="text-align:center; color: black;"> FAQs</h1> </b>
+
+<div style="border: solid; background-color: white;" class="container"   ><h3 style="color: black">
     <b>Q. </b>How to contact the creators?
     <br>
     <b>A. </b>To contact the creators click on <a href="{{ url_for('ContactUs') }}">contact us </a> for more information.
@@ -85,8 +92,6 @@
     Thus, from this data, ways to better inform the public could be made.
     <br>
 
-
-    <br><b>More FAQs will be posted soon</b></h3>
 </div>
 
 <!--
