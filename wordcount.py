@@ -19,7 +19,10 @@ class WordCount(object):
         words = s.split()     #turn string into a list of words in the string
         words = [x.lower() for x in words] #turn all words in the list to lowercase, to easily take out words we don't want
 
-        stopwords = ['the', 'i', 'from', 'a', 'me', 'thing', 'is', 'of', 'by', 'be', 'any', 'on', 'my', 'and', 'in', 'are', 'https:', '...', '-', 'to'] #words we don't want
+        stopwords = ['the', 'i', 'from', 'a', 'me', 'thing', 'is', 'of', 'by', 'be', 'any', 'on', 'my', 'and', 'in', 'are', 'https:', '...', '-', 'to', 'for', 'as'
+        ,'with', 'get', 'el', 'la', 'at', 'or', 'we', 'he', 'you', 'its', 'this','has','can','so','our','will','what',
+        'who','nor', 'yet', 'but','also', 'am', 'maybe', 'if', 'she', 'her', 'that', 'they', 'was', 'than', 'not', 'it'
+        'rt','these', 'how', 'overall', 'an'] #words we don't want
         for word in list(words):
             if word in stopwords:
                 words.remove(word) #remove the words we don't want
