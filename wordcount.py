@@ -14,15 +14,13 @@ class WordCount(object):
         return result
 
     def getFrequentWordsFrom(self, s):
+        returnlist = []
         wordNumberToReturn = 10 #the number of most common words that you'd like to return
 
         words = s.split()     #turn string into a list of words in the string
         words = [x.lower() for x in words] #turn all words in the list to lowercase, to easily take out words we don't want
 
-        stopwords = ['the', 'i', 'from', 'a', 'me', 'thing', 'is', 'of', 'by', 'be', 'any', 'on', 'my', 'and', 'in', 'are', 'https:', '...', '-', 'to', 'for', 'as'
-        ,'with', 'get', 'el', 'la', 'at', 'or', 'we', 'he', 'you', 'its', 'this','has','can','so','our','will','what',
-        'who','nor', 'yet', 'but','also', 'am', 'maybe', 'if', 'she', 'her', 'that', 'they', 'was', 'than', 'not', 'it'
-        'rt','these', 'how', 'overall', 'an'] #words we don't want
+        stopwords = ['the', 'i', 'from', 'a', 'me', 'thing', 'is', 'of', 'by', 'be', 'any', 'on', 'my', 'and', 'in', 'are', 'https:', '...', '-', 'to', 'for', 'with', 'it'] #words we don't want
         for word in list(words):
             if word in stopwords:
                 words.remove(word) #remove the words we don't want
@@ -30,6 +28,10 @@ class WordCount(object):
         scores = self.getWordCounts(words)   #magic that gets the most frequent words in the list
         scores = sorted(scores.items(), key=operator.itemgetter(1))
         scores = reversed(scores)
-        scores = list(x[0] for x in scores)
+        scores = dict(x for x in scores)
 
-        return scores[0:wordNumberToReturn]
+        for key, value in scores.items():
+            temp = [key,value]
+            returnlist.append(temp)
+
+        return returnlist[0:wordNumberToReturn]
