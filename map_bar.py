@@ -1,9 +1,5 @@
-# line means plt= matplotlib.pyplor
 import matplotlib.animation as animation
-
 import matplotlib.pyplot as plt
-
-#This is for the map plotv
 import mpl_toolkits
 from mpl_toolkits.basemap import Basemap
 from matplotlib.colors import rgb2hex, Normalize
@@ -14,8 +10,6 @@ from matplotlib.font_manager import FontProperties
 import numpy as np
 import random
 from collections import Counter
-
-#For wordcloud
 from os import path
 from wordcloud import WordCloud, STOPWORDS
 
@@ -27,69 +21,46 @@ def data_vis(tweets, ptweets, ntweets, term):
 
     # This removes the // from http
     remove_back = lambda s: ' '.join(i for i in s.split() if '//' not in i)
-
-    #This will print all the tweet text
-    #print('###########All')
+    #This will make all the tweet text as one str
     alltweets = [tweet for tweet in tweets if
                  tweet['sentiment'] == 'negative' or tweet['sentiment'] == 'positive' or tweet[
                      'sentiment'] == 'neutral']
     for tweet in alltweets:
         strOfAllTweet += " " + tweet['text']
-        #print(strOfAllTweet)
-
-    # This gets rid of the @ username and &amp
+        
+    #This gets rid of any words that starts with @ and & for all tweets
     newStrAll = " ".join(list(filter(lambda x: x[0] != '@', strOfAllTweet.split())))
     newStrAll2 = " ".join(list(filter(lambda x: x[0] != '&', newStrAll.split())))
     strOfAllTweet = remove_back(newStrAll2)
 
-    #print("OOOOOOOO")
-    #print(strOfAllTweet)
-    #print('OOOOOOOO')
-
-    #print('###########Pos')
-    # This will print positive tweet text
-    #print(ptweets)
+    # This will make positive tweet text as one str
     for tweet in ptweets:
-        strOfPosTweet += " " + tweet['text']
-        #print(strOfPosTweet)
-
-    #This gets rid of the @ username and &amp
+        strOfPosTweet += " " + tweet['text']  
+    #This gets rid of the @ username and &amp for positive tweets
     newStrPos = " ".join(list(filter(lambda x:x[0]!='@', strOfPosTweet.split())))
     newStr2 = " ".join(list(filter(lambda x: x[0] != '&', newStrPos.split())))
     strOfPosTweet = remove_back(newStr2)
 
-    #print("OOOOOOOO")
-    #print(strOfPosTweet)
-    #print('OOOOOOOO')
-
-    #print('###########Neg')
+    #This will make negative tweet text as one str
     for tweet in ntweets:
         strOfNegTweet += " " + tweet['text']
-        #print(strOfNegTweet)
-        #print(strOfNegTweet)
-
+    #This gets rid of the @ username and &amp for negative tweets
     newStrNeg = " ".join(list(filter(lambda x: x[0] != '@', strOfNegTweet.split())))
     newStrNeg2 = " ".join(list(filter(lambda x: x[0] != '&', newStrNeg.split())))
     strOfNegTweet = remove_back(newStrNeg2)
-    #print("OOOOOOOO")
-    #print(strOfNegTweet)
-    #print('OOOOOOOO')
-
-    #print('###########Neu')
+ 
+    #This will make neutral tweets as a one str
     neutweets = [tweet for tweet in tweets if tweet['sentiment'] == 'neutral']
     for tweet in neutweets:
         strOfNeuTweet += " " + tweet['text']
-        #print(strOfNeuTweet)
-
+    #This gets rid of the @ username and &amp for neutral tweets
     newStrNeu = " ".join(list(filter(lambda x: x[0] != '@', strOfNeuTweet.split())))
     newStrNeu2 = " ".join(list(filter(lambda x: x[0] != '&', newStrNeu.split())))
     strOfNeuTweet = remove_back(newStrNeu2)
-    #print("OOOOOOOO")
-    #print(strOfNeuTweet)
-    #print('OOOOOOOO')
-    #print('********')
+    
     ##########################################################
     #This makes the word cloud
+    #This add additional stopwords
     stopwords = set(STOPWORDS)
     stopwords.add("http")
     stopwords.add("https")
@@ -108,7 +79,6 @@ def data_vis(tweets, ptweets, ntweets, term):
     if len(alltweets) > 1:
         wordcloud = WordCloud(max_words=500, background_color="white", stopwords=stopwords, collocations=False,
                           relative_scaling=0.5).generate(strOfAllTweet)
-        #print(WordCounts)
         plt.title('All Tweets', fontsize=20)
         plt.imshow(wordcloud, interpolation='bilinear')
         plt.axis("off")
@@ -157,51 +127,34 @@ def data_vis(tweets, ptweets, ntweets, term):
         plt.axis("off")
         plt.savefig('static/WordCloudNeu.png')
         plt.close()
-        ########################################################
-
-        # This makes the time zone Bar graph
-
-    print("###")
+    ########################################################
+    # This makes the time zone Bar graph
+    
     timeZoneStr = []
     for tweet in alltweets:
         timeZoneStr.append(tweet['timezone'])
-    #print(timeZoneStr)
 
     counts = Counter(timeZoneStr)
-    # counts= dictionary
-    #print(counts)
-    # this is what is printed out => Counter({'None': 7, 'Central Time (US & Canada)': 1, 'America/Caracas': 1, 'Arizona': 1})
-
-    # count.get is how you get values from the key
     default_value = 0  # the default_value gives you a 0 for the time zone,
     # as sometimes a timezone isn't there and then its value will be none and this mess up the code
     pt = counts.get("Pacific Time (US & Canada)", default_value)
-    #print(pt)
     et = counts.get("Eastern Time (US & Canada)", default_value)
-    #print(et)
     mt = counts.get("Mountain Time (US & Canada)", default_value)
-    #print(mt)
     az = counts.get("Alaska", default_value)
-    #print(az)
     hz = counts.get("Hawaii", default_value)
-    #print(hz)
     ct = counts.get("Central Time (US & Canada)", default_value)
-    #print(ct)
 
     fig = plt.figure
-
     objects = ('Eastern  ', 'Pacific  ', 'Mountain  ', 'Alaska', 'Central  ', 'Hawaii')
     y_pos = np.arange(len(objects))
-    # to give each bar its value
+    
+    # to give each bar its value for all time zone
     performance = [et, pt, mt, az, ct, hz]
 
     plt.bar(y_pos, performance, align='center', alpha=0.5)
     plt.xticks(y_pos, objects)
     plt.ylabel('Number of Tweets')
     plt.title('Tweets in US Time Zones')
-
-    # plt.show()  to display on pycharm
-    # savfig= saves graph as png
     plt.savefig('static/barchart.png')
     plt.close()
 
@@ -209,37 +162,27 @@ def data_vis(tweets, ptweets, ntweets, term):
     p_timeZoneStr = []
     for tweet in ptweets:
         p_timeZoneStr.append(tweet['timezone'])
-    #print(p_timeZoneStr)
 
     p_counts = Counter(p_timeZoneStr)
-    #print(p_counts)
     p_pt = p_counts.get("Pacific Time (US & Canada)", default_value)
-    #print(p_pt)
     p_et = p_counts.get("Eastern Time (US & Canada)", default_value)
-    #print(p_et)
     p_mt = p_counts.get("Mountain Time (US & Canada)", default_value)
-    #print(p_mt)
     p_az = p_counts.get("Alaska", default_value)
-    #print(p_az)
     p_hz = p_counts.get("Hawaii", default_value)
-    #print(p_hz)
     p_ct = p_counts.get("Central Time (US & Canada)", default_value)
-    #print(p_ct)
 
     fig = plt.figure
 
     objects = ('Eastern  ', 'Pacific  ', 'Mountain  ', 'Alaska', 'Central  ', 'Hawaii')
     y_pos = np.arange(len(objects))
-    # to give each bar its value
+    
+    # to give each bar its value for positive 
     performance = [p_et, p_pt, p_mt, p_az, p_ct, p_hz]
 
     plt.bar(y_pos, performance, align='center', alpha=0.5)
     plt.xticks(y_pos, objects)
     plt.ylabel('Number of Tweets')
     plt.title('Positive Tweets in US Time Zones')
-
-    # plt.show()  to display on pycharm
-    # savfig= saves graph as png
     barG = plt.savefig('static/positive_barchart.png')
     plt.close()
 
@@ -247,37 +190,27 @@ def data_vis(tweets, ptweets, ntweets, term):
     n_timeZoneStr = []
     for tweet in ntweets:
         n_timeZoneStr.append(tweet['timezone'])
-    #print(n_timeZoneStr)
 
     n_counts = Counter(n_timeZoneStr)
-    #print(n_counts)
     n_pt = n_counts.get("Pacific Time (US & Canada)", default_value)
-    #print(n_pt)
     n_et = n_counts.get("Eastern Time (US & Canada)", default_value)
-    #print(n_et)
     n_mt = n_counts.get("Mountain Time (US & Canada)", default_value)
-    #print(n_mt)
     n_az = n_counts.get("Alaska", default_value)
-    #print(n_az)
     n_hz = n_counts.get("Hawaii", default_value)
-    #print(n_hz)
     n_ct = n_counts.get("Central Time (US & Canada)", default_value)
-    #print(n_ct)
 
     fig = plt.figure
 
     objects = ('Eastern  ', 'Pacific  ', 'Mountain  ', 'Alaska', 'Central  ', 'Hawaii')
     y_pos = np.arange(len(objects))
-    # to give each bar its value
+    
+    # to give each bar its value negative
     performance = [n_et, n_pt, n_mt, n_az, n_ct, n_hz]
 
     plt.bar(y_pos, performance, align='center', alpha=0.5)
     plt.xticks(y_pos, objects)
     plt.ylabel('Number of Tweets')
     plt.title('Negative Tweets in US Time Zones')
-
-    # plt.show()  to display on pycharm
-    # savfig= saves graph as png
     barG = plt.savefig('static/negative_barchart.png')
     plt.close()
 
@@ -285,49 +218,40 @@ def data_vis(tweets, ptweets, ntweets, term):
     neu_timeZoneStr = []
     for tweet in neutweets:
         neu_timeZoneStr.append(tweet['timezone'])
-    #print(neu_timeZoneStr)
-    # print(lens(neu_timeZoneStr))
-
     neu_counts = Counter(neu_timeZoneStr)
-    #print(neu_counts)
     neu_pt = neu_counts.get("Pacific Time (US & Canada)", default_value)
-    #print(neu_pt)
     neu_et = neu_counts.get("Eastern Time (US & Canada)", default_value)
-    #print(neu_et)
     neu_mt = neu_counts.get("Mountain Time (US & Canada)", default_value)
-    #print(neu_mt)
     neu_az = neu_counts.get("Alaska", default_value)
-    #print(neu_az)
     neu_hz = neu_counts.get("Hawaii", default_value)
-    #print(neu_hz)
     neu_ct = neu_counts.get("Central Time (US & Canada)", default_value)
-    #print(neu_ct)
 
     fig = plt.figure
 
     objects = ('Eastern  ', 'Pacific  ', 'Mountain  ', 'Alaska', 'Central  ', 'Hawaii')
     y_pos = np.arange(len(objects))
-    # to give each bar its value
+    
+    # to give each bar its value for neutral tweets
     performance = [neu_et, neu_pt, neu_mt, neu_az, neu_ct, neu_hz]
 
     plt.bar(y_pos, performance, align='center', alpha=0.5)
     plt.xticks(y_pos, objects)
     plt.ylabel('Number of Tweets')
     plt.title('Neutral Tweets in US Time Zones')
-
-    # plt.show()  to display on pycharm
-    # savfig= saves graph as png
     barG = plt.savefig('static/neutral_barchart.png')
     plt.close()
     ####################################
-    #This is for the map
+    
+    #This creates the map
+    
     fig, ax = plt.subplots()
     m = Basemap(llcrnrlon=-119,llcrnrlat=22,urcrnrlon=-64,urcrnrlat=49,
             projection='lcc',lat_1=33,lat_2=45,lon_0=-95)
     m_ = Basemap(llcrnrlon=-190,llcrnrlat=20,urcrnrlon=-143,urcrnrlat=46,
-                projection='merc',lat_ts=20)  # do not change these numbers
+                projection='merc',lat_ts=20)  
+                
     shp_info = m.readshapefile('st99_d00','states',drawbounds=False,
-                               linewidth=0.45,color='gray') #drawbounds True gives the shape of the states border
+                               linewidth=0.45,color='gray') 
     shp_info_ = m_.readshapefile('st99_d00','states',drawbounds=False)
     popdensity = {
     #Time Zone Hawaii
@@ -387,7 +311,6 @@ def data_vis(tweets, ptweets, ntweets, term):
     'Vermont':     110.41,
     'Maine':  110.95}
 
-    #%% -------- choose a color for each state based on population density. -------
     colors={}
     statenames=[]
     cmap = plt.cm.Set1
@@ -398,13 +321,10 @@ def data_vis(tweets, ptweets, ntweets, term):
         # skip DC and Puerto Rico.
         if statename not in ['District of Columbia','Puerto Rico']:
             pop = popdensity[statename]
-            # calling colormap with value between 0 and 1 returns
-            # rgba value.  Invert color range (hot colors are high
-            # population), take sqrt root to spread out colors more.
             colors[statename] = cmap(np.sqrt((pop-vmin)/(vmax-vmin)))[:3]
         statenames.append(statename)
 
-    #%% ---------  cycle through state names, color each one.  --------------------
+    #cycle through state names, color each one. 
     for nshape,seg in enumerate(m.states):
         # skip DC and Puerto Rico.
         if statenames[nshape] not in ['Puerto Rico', 'District of Columbia']:
@@ -417,8 +337,8 @@ def data_vis(tweets, ptweets, ntweets, term):
     AK_SCALE = 0.19  # scale down Alaska to show as a map inset
     HI_OFFSET_X = -1900000  # X coordinate offset amount to move Hawaii "beneath" Texas
     HI_OFFSET_Y = 250000    # similar to above: Y offset for Hawaii
-    AK_OFFSET_X = -250000   # X offset for Alaska (These four values are obtained
-    AK_OFFSET_Y = -750000   # via manual trial and error, thus changing them is not recommended.)
+    AK_OFFSET_X = -250000   # X offset for Alaska 
+    AK_OFFSET_Y = -750000   
 
     for nshape, shapedict in enumerate(m_.states_info):  # plot Alaska and Hawaii as map insets
         if shapedict['NAME'] in ['Alaska', 'Hawaii']:
@@ -535,12 +455,9 @@ def data_vis(tweets, ptweets, ntweets, term):
                 clat -= random.uniform(0.0, 1.0)
                 clon -= random.uniform(0.0, 1.0)   
     x, y = m(lons, lats)  # transform coordinates
-    #x, y = m(lonsHA, latsHA)
     m.plot(x,y, 'k.')
-    #m.plot(x,y, 'ko')
 
     ax.set_title('Time Zone for all tweets in the United States for the result:' + " " + term, fontsize=14)
-    #plt.show()
     fig.set_size_inches(8, 8, forward=True)
     Map = fig.savefig('static/basemap.png', dpi=100)
     plt.close()
