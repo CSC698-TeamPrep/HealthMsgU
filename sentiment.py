@@ -77,13 +77,13 @@ class TwitterClient(object):
                 parsed_tweet['text'] = tweet.text
                 # saving sentiment of tweet
                 parsed_tweet['sentiment'] = self.get_tweet_sentiment(tweet.text)
-
+                # Getting unique id for each tweet to generate url
                 parsed_tweet['id'] = tweet.id
-
+                # Getting username for each tweet to generate url 
                 parsed_tweet['user_name'] = tweet.user.screen_name
-
+                # Generating url so displayed tweets are clickable
                 parsed_tweet['url'] = "https://twitter.com/" + tweet.user.screen_name + "/status/" + str(tweet.id)
-
+                # Getting time zone for each tweet to display on map
                 x = tweet.author
                 parsed_tweet['timezone'] = x.time_zone
 

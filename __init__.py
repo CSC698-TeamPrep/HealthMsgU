@@ -14,28 +14,16 @@ import operator
 # Name it the '__name__' of this module (tweet-harvest)
 app = Flask(__name__)
 
-auth = tweepy.OAuthHandler("iHTvDAptJAx3PwfYfw00Qa6sX", "6Gp8kYPR3kULcPPdW3k1gYopQEi4NBdSfFPP8ifHCE0gwkQWCX")
-auth.set_access_token("938932912870658048-ICcR2mOBhIvNtIQmMSVdtuQbUsCxIXL", "QU7ArtcKW1aEQYcf0HlMUpS7m07UtQmUNl42OvAJyZ5SH")
 
-api = tweepy.API(auth)
-app.config.from_object(__name__)
 app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
 
-#@app.template_filter('autoversion')
-#def autoversion_filter(filename):
-  # determining fullpath might be project specific
-#  fullpath = os.path.join('app/', filename[1:])
-#  try:
-#      timestamp = str(os.path.getmtime(fullpath))
-#  except OSError:
-#      return filename
-#  newfilename = "{0}?v={1}".format(filename, timestamp)
-#  return newfilename
 
+#Generates Form to be rendered on render_data.html
 class ReusableForm(Form):
         tweets = TextField('Search Health Term:')
 
+#This function performs sentiment analyses on the twitter data as well as calls methods for additional data analyses
 def sentiment(userinput):
     # creating object of TwitterClient Class
     api = TwitterClient(userinput)
@@ -50,11 +38,13 @@ def sentiment(userinput):
     # picking negative tweets from tweets
     ntweets = [tweet for tweet in tweets if tweet['sentiment'] == 'negative']
 
-    ptweetstext = ''
-    for tweet in ptweets:
-        ptweetstext += tweet["text"]
+    #stores tweets in variable to be passed to wordCount()
+    tweetstext = ''
+    for tweet in tweets:
+        tweetstext += tweet["text"]
 
-    wordFreq = WordCount(ptweetstext).wordCount
+    #Calculates word frequency in all tweets
+    wordFreq = WordCount(tweetstext).wordCount
 
     #print("Top 10 most frequent words in positive tweets: " + getFrequentWordsFrom(ptweets))
     # percentage of positive tweets
@@ -69,7 +59,7 @@ def sentiment(userinput):
     
 
 
-
+    #creates a list of positive tweets to be displayed on render_data.html
     ptweet_render = []
     count = 0
     for tweet in ptweets:
@@ -77,7 +67,7 @@ def sentiment(userinput):
             ptweet_render.append(tweet)
             count += 1
 
-    
+    #Creates a list of negative tweets to be displayed on render_data.html
     ntweet_render = []
     count = 0
     for tweet in ntweets:
@@ -85,11 +75,12 @@ def sentiment(userinput):
             ntweet_render.append(tweet)
             count += 1
 
-    print("NUMBER OF CONSTRAINED TWEETS:\n")
-    print(len(ntweet_render))
-    print("\n\n")
+    #For debugging
+    #print("NUMBER OF CONSTRAINED TWEETS:\n")
+    #print(len(ntweet_render))
+    #print("\n\n")
 
-    
+    #Code to generate pie chart
     labels = 'Positive', 'Negative', 'Neutral'
     sizes = [x,y,z]
     colors = ['gold', 'pink', 'lightskyblue']
@@ -106,7 +97,7 @@ def sentiment(userinput):
     #ntweets_analyses = "Negative tweets:" + str(y) + "%"
     #nut_tweet_analyses = "Neutral tweets:" + str(z) + "%"
     
-
+    #Calls data_vis function for additional data vis elements
     data_vis(tweets, ptweets, ntweets, term)
 
 
@@ -118,14 +109,16 @@ def sentiment(userinput):
 # We define our URL route, and the controller to handle requests
 @app.route('/', methods=['GET', 'POST'])
 def index():
+	#Create form object to be rendered on index.html
     form = ReusableForm(request.form)
     return render_template('index.html', form = form)
 
 @app.route('/render_Data', methods = ['GET', 'POST'])
 def render_Data():
+	#When the form is submitted text from the text field passed to a variable
     if request.method == 'POST':
         tweets=request.form['tweets']
-
+        #Calling sentiment.py method to pull tweets from twitter and perform sentiment analyses along with other data vis
         term, ptweets, ptweet_render,ntweets, ntweet_render, wordFreq = sentiment(tweets)
         
     return render_template('render_Data.html', term = term, ptweet_render = ptweet_render, ntweet_render = ntweet_render,
