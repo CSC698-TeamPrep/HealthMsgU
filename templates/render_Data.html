@@ -124,20 +124,21 @@
     <div class = "col-md-2"></div>
     <div class = "col-md-8"> 
     <div class="page-header"><h1 id= "wordcloud"><b>Word Cloud</h1><b></div>
-      <div class = "wrapper">
+      <div class = "wrapper"> 
+        <!-- Creates buttons to display different word clouds 1 at time -->
       <button type="button" class="btn btn-primary" onclick = "WCA()" id = "AllWCB">All</button>
       <button type="button" class="btn btn-primary" onclick = "WCP()" id = "PosWCB">Positive</button>
       <button type="button" class="btn btn-primary" onclick = "WCNEG()" id = "NegWCB">Negative</button>
       <button type="button" class="btn btn-primary" onclick = "WCNEU()" id = "NeuWCB">Neutral</button>
       </div>
-      
+      <!-- Holds word cloud images -->
       <div class="center">
       <img align="center" src= {{'static/WordCloudAll.png'}} id= "AllWC">
       <img align = "center" src= {{'static/WordCloudPos.png'}} id = "PosWC"> 
       <img align = "center" src= {{'static/WordCloudNeg.png'}} id = "NegWC">
       <img align = "center" src= {{'static/WordCloudNeu.png'}} id = "NeuWC">
       </div>
-
+<!-- Displays results from word frequency analyses -->
     <div class="page-header"><h1 id= "wordFreq"><b>Most Frequently Used Words</h1><b></div>
         <table class = "center">
 
@@ -149,12 +150,13 @@
         </table>
 
     <div>
+      <!-- Displays pie chart results for sentiment analyses -->
     <div class="page-header"><h1 id= "PieChart"><b>Pie chart</h1><b></div>    
         <img src= {{'static/ah.png'}} class="center">
     </b>
 
     <div class="page-header"><h1 id= "fivetweet"><b>Top Five Positive/Negative Tweets</h1><b></div>
-      
+      <!-- Displays most recent positive and negative tweets -->
       <div class="breaking">
       <h1>Positive Tweets: </h1>
         <ul>
@@ -172,9 +174,10 @@
         </ul>
       </div>
         
-    
+    <!-- Displays the map with timezone data for tweets -->
     <div class="page-header"><h1 id= "Map"><b>Map</h1><b></div>
         <img src= {{'static/basemap.png'}}>
+    <!-- Buttons to display different bar graphs from sentiment analyses -->
     <div class="page-header"><h1 id= "TimeZone"><b>Time Zone</h1><b></div> 
       <div class = "wrapper">
       <button type="button" class="btn btn-primary" onclick = "BarA()" id = "AllWCB">All</button>
@@ -182,7 +185,7 @@
       <button type="button" class="btn btn-primary" onclick = "BarNEG()" id = "NegWCB">Negative</button>
       <button type="button" class="btn btn-primary" onclick = "BarNEU()" id = "NeuWCB">Neutral</button>  
       </div>
-
+<!-- bar graph image sources -->
     <div class = "center">    
         <img src= {{'static/barchart.png'}} id = "Allbar">
         <img src= {{'static/positive_barchart.png'}} id = "Posbar">
